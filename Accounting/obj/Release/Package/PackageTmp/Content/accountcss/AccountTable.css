@@ -1,0 +1,11 @@
+﻿.AccountInputTable tr td{
+    padding-top:20px;
+}
+.AccountInputTable tr>td{
+    padding-left:20px;
+    width:200px;
+}
+
+.AccountInputTable tr>td:nth-child(even){
+    min-width:400px
+}

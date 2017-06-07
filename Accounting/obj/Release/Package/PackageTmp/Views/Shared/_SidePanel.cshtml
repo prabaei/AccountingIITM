@@ -1,0 +1,29 @@
+﻿
+    <div id="nav-sidebar" class="hidemenu">
+        <ul>
+            <li style="background-color:#16A085;text-align:center;font-size:large" ><p style="color:#ddd">Menu <span><img hidden src="~/Content/Images/menu-icon.png" width="25"/></span></p></li>
+            <li class="child">
+                <a href="#">Account&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <ul class="children" style="display:none">
+                    <li><a href="@Url.Action("Index","ImprestMstr",new { area=""})" >New Account</a></li>
+                    <li><a href="@Url.Action("AccountGrid","ImprestMstr",new { area=""})" target="_blank">Account Details</a></li>
+                </ul>
+            </li>
+            <li class="child">
+                <a href="#">Transaction&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <ul class="children" style="display:none">
+                    <li><a href="@Url.Action("Index","Trans",new { area=""})" >Transaction</a></li>
+                    <li><a href="@Url.Action("AccountTrans","Trans",new {area="" })" target="_blank">View Transaction</a></li>
+                </ul>
+            </li>
+            <li><a href="@Url.Action("Index","Brs",new {area="" ,target="_blank"})" target="_blank">BRS</a></li>
+            <li class="child">
+                <a href="#">Supplier&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <ul class="children" style="display:none">
+                    <li><a href="@Url.Action("Index","Supplier",new { area=""})" >New Supplier</a></li>
+                    <li><a href="@Url.Action("List","Supplier",new {area="" })" target="_blank">View Supplier</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+

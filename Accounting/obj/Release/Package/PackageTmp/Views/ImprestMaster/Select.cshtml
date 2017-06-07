@@ -1,0 +1,39 @@
+﻿@using Accounting.Architecture.AccountHelpers
+@using Accounting.Models
+@model ImprestMasterModel
+<br />
+<div class="row">
+    <div class="form-group">
+        @Html.AccountLabelFor(m => m.ProjectNo, new { @class = "col-md-2" })
+        <div class="col-md-4">
+            @Html.AccountDisplayFor(m => m.ProjectNo, new { })
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.AccountLabelFor(m => m.CoorName, new { @class = "col-md-2" })
+        <div class="col-md-4">
+            @Html.AccountDisplayFor(m => m.CoorName, new {})
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.AccountLabelFor(m => m.ProjectStartDate, new { @class = "col-md-2" })
+        <div class="col-md-4">
+            @Html.AccountDisplayFor(m => m.ProjectStartDate, new {  })
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.AccountLabelFor(m => m.ProjectEndDate, new { @class = "col-md-2" })
+        <div class="col-md-4">
+            @Html.AccountDisplayFor(m => m.ProjectEndDate, new {  })
+        </div>
+
+    </div>
+</div>
+@using (Html.BeginForm("Select", "ImprestMaster", FormMethod.Post, new { }))
+{
+    @Html.AccountTextBoxFor(m => m.BankAccountNumber, new { @placeholder = "Bank Account NO" })
+}

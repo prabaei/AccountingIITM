@@ -1,0 +1,220 @@
+﻿@model Accounting.Models.Login.Register
+@{
+    ViewBag.Title = "Registration";
+}
+
+<h2>Registration</h2>
+@using (Html.BeginForm("Registration", "Staff", FormMethod.Post, new { id="reg_form"}))
+{
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            @Html.Label("Name")
+            @*<input type="text" id="Name" name="Name" class="form-control" />*@
+            @Html.TextBoxFor(m=>m.Name ,new  { id = "Name", name = "Name", @class="form-control" } )
+            <label id="erName" style="color:red"></label>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            @Html.Label("Gender")<br />
+                <label id="rdomale" class="btn btn-default" >
+                    @Html.RadioButtonFor(m => m.Gender, 1,new {  id ="radiomale"}) &nbsp; <span>Male</span>
+                </label>
+                <label class="btn btn-default" >
+                    @Html.RadioButtonFor(m => m.Gender, 2,new { id="radiofemale"}) &nbsp; <span>Female</span>
+                </label>
+
+            
+            <label id="erGender" style="color:red"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            @Html.Label("Email")
+            @*<input type="text" id="Email" name="Email" class="form-control" />*@
+            @Html.TextBoxFor(m => m.Email, new { id = "Email", name = "Email", @class="form-control" })
+           
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            @Html.Label("Confirm Email")
+            <input type="text" id="ConfirmEmail" name="ConfirmEmail" class="form-control" />
+            <label id="erEmail" style="color:red"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            @Html.Label("Password")
+            @*<input type="password" id="Passord" name="Passord" class="form-control" />*@
+            @Html.TextBoxFor(m => m.password, new { type = "password", id = "Password", maxlength = "30", name = "Passord", @class="form-control"})
+            
+        </div>
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            @Html.Label("Confirm Password")
+            <input type="password" maxlength="30" id="ConfirmPassword" name="ConfirmPassword" class="form-control" />
+            <label id="erPassword" style="color:red"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            @Html.Label("Role")
+            @*<input type="password" id="Passord" name="Passord" class="form-control" />*@
+            @Html.DropDownListFor(m=>m.UsrRole,new List<SelectListItem>() {
+           new SelectListItem() {Text="Staff",Value="1" },
+           new SelectListItem() {Text="Admin",Value="2" }
+       },"--Select Role--",new { @id="Role"})
+            <label id="erRole" style="color:red"></label>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-2 col-lg-2">
+            
+        </div>
+        
+        <div class="col-sm-12 col-md-3 col-lg-5">
+           
+            <button type="button" class="btn btn-info col-md-5 col-lg-5" onclick="registration()">Register<span class="glyphicon glyphicon-send"></span></button> 
+            <div class="col-md-1 col-lg-1"></div>
+            <button type="button" class="btn btn-info col-md-5 col-lg-5" onclick="clearform()">Clear</button>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3">
+
+        </div>
+    </div>
+
+}
+<div id="msgbox" title="Message">
+    <div id="commitedtran">
+    </div>
+</div>
+<script>
+    var PageRedire = {
+        urlr: '#'
+    }
+    function registration() {
+        if(validate())
+        {
+            $("#msgbox").dialog("open");
+            $.ajax({
+                url: "@Url.Action("Registration", "Staff")",
+                type: "POST",
+                dataType: "json",
+                data: $("#reg_form").serialize(),
+                success: function (data) {
+                    if (data.iscommited == "True") {
+                        if (data.errmsg == 'success') {
+                            $("#commitedtran").empty();
+                            PageRedire.urlr = '@Url.Action("Login", "Staff")';
+                            $("#commitedtran").append("<p>Registered Successfully</p><p>Redirecting Shortly</p>");
+                            setTimeout(function () {
+                                $("#msgbox").dialog("close");
+                            }, 2000);
+                        }
+                    }
+                    if (data.iscommited == "False") {
+                        if (data.errmsg = 'EmAlEx') {
+                            //alert('Email Already Reagistered');
+                            $("#commitedtran").empty();
+                            PageRedire.urlr = '#';
+                            $("#commitedtran").append("<p>Email Already Reagistered</p>");
+                        }
+                        if (data.errmsg == 'catch') {
+                            //alert('contact computer section(catch error)');
+                            $("#commitedtran").empty();
+                            PageRedire.urlr = '#';
+                            $("#commitedtran").append("<p>contact computer section(catch error)</p>");
+                        }
+                        if (data.errmsg == 'TRIGFAIL') {
+                             $("#commitedtran").empty();
+                            PageRedire.urlr = '#';
+                            $("#commitedtran").append("<p>contact computer section(Trigger error)</p>");
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function validate() {
+        var valid = true;
+        if ($("#Role").val() == '') {
+            $('#erRole').html("Role is Required");
+            valid = false;
+        }
+        if ($('#Name').val()=='') {
+            $('#erName').html("Name is Required");
+            valid = false;
+        } else {
+            $('#erName').html("");
+        }
+
+        if ($('#Email').val() == '') {
+
+            $('#erEmail').html("Email is Required");
+            valid = false;
+        } else {
+            $('#erEmail').html("");
+        }
+        
+        if ($('#Password').val().length < 8) {
+            $('#erPassword').html("password should be atleast 8 character");
+            valid = false;
+        } else {
+            $('#erPassword').html("");
+        }
+        if ($('#Password').val() == '') {
+            $('#erPassword').html("Password is Required");
+            valid = false;
+        } else {
+            //$('#erPassword').html("");
+        }
+        if ($('#Email').val() != $('#ConfirmEmail').val()) {
+            $('#erEmail').html("Email do not Match");
+            valid = false;
+        } else {
+            //$('#erEmail').html("");
+        }
+        if ($('#Password').val() != $('#ConfirmPassword').val()) {
+            $('#erPassword').html("Password do not Match");
+            valid = false;
+        } else {
+            //$('#erPassword').html("");
+        }
+        return valid;
+    }
+    function clearform() {
+        $('#Name').val('');
+        $('#Email').val('');
+        $('#Password').val('');
+        $('#ConfirmEmail').val('');
+        $('#ConfirmPassword').val('');
+        $("#radiomale").prop("checked", true)
+    }
+    $(function () {
+        $("#radiomale").prop("checked", true);
+        $("#msgbox").dialog({
+            autoOpen: false,
+            buttons: [
+                {
+                    text: "Close",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            ],
+            close: function (event, ui) {
+                if (PageRedire == null) {
+                    PageRedire.urlr = '#';
+                }
+                if (PageRedire.urlr == null) {
+                    PageRedire.urlr = '#';
+                }
+                window.location.href = PageRedire.urlr;
+            },
+            closeOnEscape: false,
+            draggable: false,
+            modal: true,
+        });
+    });
+</script>
+
+
+

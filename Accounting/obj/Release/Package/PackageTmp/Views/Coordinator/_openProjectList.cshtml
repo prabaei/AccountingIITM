@@ -1,0 +1,26 @@
+﻿@model List<Accounting.Models.CoordinatorMaster.projectList>
+
+
+<div class="panel panel-success">
+    <div class="panel-heading">Open Project</div>
+    <div class="panel-body">
+
+        <table class="table">
+            <tr>
+                <td>NPRNO</td>
+                <td>StartDate</td>
+                <td>CloseDate</td>
+            </tr>
+            @foreach (var rec in Model)
+            {
+                <tr>
+                    <td>@rec.NPRNO</td>
+                    <td>@rec.STARTDATE</td>
+                    <td>@rec.CLOSEDATE</td>
+                </tr>
+
+            }
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,113 @@
+﻿@using Accounting.Models.CoordinatorMaster
+@model CoordModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<div style="text-align:right">
+    <a href="#" class="btn btn-info"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;New</a>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-export" aria-hidden="true"></span>&nbsp;Export</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Export as PDF</a></li>
+            <li><a href="#">Export Xlsx</a></li>
+        </ul>
+    </div>
+
+</div>
+<br />
+<div class="panel panel-default" style="width:auto">
+    <div class="panel-heading">Panel with panel-default class</div>
+    <div class="panel-body searchheadder" style="text-align:left">
+        @using (Html.BeginForm("coordinatordetail", "Coordinator", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            { Html.RenderPartial("_search", Model.search == null ? new Search() : Model.search); }
+            <div style="text-align:center;padding-right:22%">
+                <button class="btn btn-success" type="submit">search<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </div>
+
+
+        }
+
+    </div>
+</div>
+
+
+<br />
+
+@if (Model.showprojectdetail)
+{
+    <h2>Coordinator Details</h2>
+    <hr />
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Coordinator Details</div>
+                <div class="panel-body">
+
+                    <table class="table">
+                        <tr>
+                            <td>Name</td>
+                            <td>@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <td>IIRNO</td>
+                            <td>@Model.IIRNO</td>
+                        </tr>
+                        <tr>
+                            <td>Department</td>
+                            <td>@Model.Department</td>
+                        </tr>
+                        <tr>
+                            <td>Designation</td>
+                            <td>@Model.Designation</td>
+                        </tr>
+                        <tr>
+                            <td>Account No</td>
+                            <td>@Model.AccountNo</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Project Details</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            @{Html.RenderAction("openProjectList", new { IIRNO = Model.IIRNO });}
+        </div>
+        <div class="col-md-6">
+            @{Html.RenderAction("ClosedProjectList", new { IIRNO = Model.IIRNO });}
+        </div>
+
+    </div>
+
+
+                }
+
+<br />
+
+
+@*<table class="table table-striped">
+        <tr>
+            <td>Code</td>
+            <td>@Model.IIRNO</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td>@Model.Department</td>
+        </tr>
+        <tr>
+            <td>Account No</td>
+            <td></td>
+        </tr>
+    </table>*@

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AccountingModelStoreContainer" CdmEntityContainer="AccountingEntities">
+    <EntitySetMapping Name="AccTransactions">
+      <EntityTypeMapping TypeName="AccountingModel.AccTransaction">
+        <MappingFragment StoreEntitySet="AccTransaction">
+          <ScalarProperty Name="TransNO" ColumnName="TransNO" />
+          <ScalarProperty Name="INSTID" ColumnName="INSTID" />
+          <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+          <ScalarProperty Name="voucherType" ColumnName="voucherType" />
+          <ScalarProperty Name="voucherNo" ColumnName="voucherNo" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="bankDate" ColumnName="bankDate" />
+          <ScalarProperty Name="currentBal" ColumnName="currentBal" />
+          <ScalarProperty Name="AvailableBal" ColumnName="AvailableBal" />
+          <ScalarProperty Name="ChequeNO" ColumnName="ChequeNO" />
+          <ScalarProperty Name="narration" ColumnName="narration" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="TransCreated" ColumnName="TransCreated" />
+          <ScalarProperty Name="TransUpdated" ColumnName="TransUpdated" />
+          <ScalarProperty Name="TransCommited" ColumnName="TransCommited" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImprestMasters">
+      <EntityTypeMapping TypeName="AccountingModel.ImprestMaster">
+        <MappingFragment StoreEntitySet="ImprestMaster">
+          <ScalarProperty Name="InstituteId" ColumnName="InstituteId" />
+          <ScalarProperty Name="CoordinatorName" ColumnName="CoordinatorName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="BankAccountNo" ColumnName="BankAccountNo" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Limit" ColumnName="Limit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoucherSubTypes">
+      <EntityTypeMapping TypeName="AccountingModel.VoucherSubType">
+        <MappingFragment StoreEntitySet="VoucherSubType">
+          <ScalarProperty Name="SubTypeID" ColumnName="SubTypeID" />
+          <ScalarProperty Name="VoucherTypeId" ColumnName="VoucherTypeId" />
+          <ScalarProperty Name="VoucherType" ColumnName="VoucherType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoucherTypes">
+      <EntityTypeMapping TypeName="AccountingModel.VoucherType">
+        <MappingFragment StoreEntitySet="VoucherType">
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="VoucherTypeName" ColumnName="VoucherTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="commitTran" FunctionName="AccountingModel.Store.commitTran" />
+    <FunctionImportMapping FunctionImportName="createTran" FunctionName="AccountingModel.Store.createTran" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,151 @@
+﻿@using Accounting.Models.Login
+@model LoginMdl
+@{
+    ViewBag.Title = "Login";
+}
+
+<style>
+    #loginPannel {
+        display: table;
+        margin: 0 auto;
+    }
+</style>
+
+
+
+@using (Html.BeginForm("Login","Staff", new { ReturnUrl = Request.QueryString["ReturnUrl"] },FormMethod.Post,new {id="login_form" }))
+{
+    <input type="hidden" name="ReturnUrl" value="@TempData["returnurl"]" />
+    <div style="text-align:center">
+        <div id="loginPannel" class="panel panel-default" style="width:300px;height:250px">
+            <div class="panel-heading">Sign In</div>
+            <div class="panel-body">
+                <div class="input-group" style="max-width: 280px;">
+                    <span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i class="glyphicon glyphicon-user"></i></span>
+                    @*<input id="login-username" type="text" class="form-control" name="username" value="" placeholder="email">*@
+                    @Html.TextBoxFor(m => m.username, new { id = "login-username" , @class="form-control", name="username",  placeholder="email" } )
+                </div>
+                <label id="erUser" style="color:red"></label>
+
+                <div class="input-group" style="max-width: 280px;">
+                    <span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i class="glyphicon glyphicon-lock"></i></span>
+                    @*<input id="login-password"  type="text" class="form-control" name="password" value="" placeholder="Password">*@
+                    @Html.TextBoxFor(m => m.password, new { id = "login-password",  type = "password", @class="form-control", name="password", value="", placeholder="Password"} )
+                </div>
+                <label id="erPass" style="color:red"></label>
+
+                <div class="input-group" style="max-width: 280px;">
+                   
+                    @Html.CheckBoxFor(m=>m.rememberme,new { @class=""}) &nbsp;
+                    @Html.Label("Remember Me")
+                </div>
+      
+
+                <div style="margin-top:10px" class="form-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <button id="btn-login" type="button" onclick="submitLogin()" class="btn btn-success">Login</button>
+                        @*<a class="btn btn-default" href="#">Register Now</a>*@
+
+                    </div>
+                    @*<a id="btn-forgetpass" href="#">Forget Password?</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div id="msgbox" title="Message">
+    <div id="commitedtran">
+    </div>
+    <div id="loadingGif"  style="display:none;text-align:center" >
+        <img src="~/Content/Images/loading.gif" width="50" />
+    </div>
+</div>
+
+<script>
+    var PageRedire = {
+        urlr: '#'
+    }
+    var email;
+    function validate() {
+        var valid = true;
+        if ($("#login-username").val() == '') {
+            $("#erUser").html("Email Id Required");
+            valid = false;
+        } else {
+            $("#erUser").html("");
+        }
+        if ($("#login-password").val() == '') {
+            //$("#erPass").html("Password Required");
+            //valid = false;
+        } else {
+            $("#erUser").html("");
+        }
+        return valid;
+    }
+    function submitLogin() {
+        email=$("#login-username").val();
+        if(validate())
+        {
+            //$("#commitedtran").append("<img src='~/Content/Images/spinwheel.gif' width='50' />");
+           
+            
+            $("#msgbox").dialog('open');
+            $.ajax({
+                url: "@Url.Action("Login", "staff",new { area=""})",
+                type: "POST",
+            dataType: "json",
+            data: $("#login_form").serialize(),
+            success: function (data) {
+                //console.log(data);
+                if (data.validuser == "True") {
+                    $("#loadingGif").show();
+                    $("#commitedtran").empty();
+                    //$("#commitedtran").append("<p></p>");
+                    PageRedire.urlr = '@Url.Action("RedirectAction", "Staff", new { ReturnUrl = Request.QueryString["ReturnUrl"],area="" })';
+                    setTimeout(function () {
+                        $("#msgbox").dialog('close');
+                    }, 500)
+                }
+                if (data.validuser == "False") {
+                    if (data.errmsg == "resetPassword") {
+                        PageRedire.urlr = '@Url.Action("ResetPassword", "Staff", new { area=""  })' + '?Email=' + data.email;
+                        setTimeout(function () {
+                            $("#msgbox").dialog('close');
+                        }, 500)
+                    }
+                    $("#commitedtran").empty();
+                    $("#commitedtran").append("<p>" + data.errmsg + "</p>");
+                }
+            }
+        })
+        }
+    }
+    
+    $(function () {
+        $("#radiomale").prop("checked", true);
+        $("#msgbox").dialog({
+            autoOpen: false,
+            buttons: [
+                {
+                    text: "Close",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            ],
+            close: function (event, ui) {
+                if (PageRedire == null) {
+                    PageRedire.urlr = '#';
+                }
+                if (PageRedire.urlr == null) {
+                    PageRedire.urlr = '#';
+                }
+                window.location.href = PageRedire.urlr;
+            },
+            closeOnEscape: false,
+            draggable: false,
+            modal: true,
+        });
+    });
+</script>

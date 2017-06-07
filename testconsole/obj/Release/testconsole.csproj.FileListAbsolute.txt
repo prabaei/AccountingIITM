@@ -1,0 +1,16 @@
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\testconsole.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\testconsole.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\testconsole.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\Accounting.data.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\EntityFramework.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\EPPlus.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\System.Web.Mvc.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\Accounting.data.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\EntityFramework.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\EPPlus.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\bin\Release\System.Web.Mvc.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\obj\Release\testconsole.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\obj\Release\testconsole.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\testconsole\obj\Release\testconsole.pdb

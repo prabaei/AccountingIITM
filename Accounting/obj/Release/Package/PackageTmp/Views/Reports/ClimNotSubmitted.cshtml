@@ -1,0 +1,70 @@
+﻿@using Accounting.Models.reports
+@model SearchCriteria
+@{
+    ViewBag.Title = "ClimNotSubmitted";
+}
+<script src="~/scripts/Account/AccountCommon.js"></script>
+<h2>ClimNotSubmitted</h2>
+
+
+@using(Html.BeginForm("","",FormMethod.Post, new { }))
+{
+    @Html.HiddenFor(m => m.AccountNO, new { @id= "idInstid" })
+    <div class="form-group  col-sm-12 col-md-6 col-lg-6">
+        @Html.Label("Coordinator Name")
+        <div class="input-group" style="max-width: 280px;">
+            @*<input id="idInstid" oninput="enterinst()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+            @Html.TextBoxFor(m => m.Name, new { id = "coordname", @class = "form-control" ,@oninput="coordNameinp()"})
+            <span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i id="coordnameicon" class="glyphicon glyphicon-search"></i><img id="coordnameimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>
+
+        </div>
+        <label id="erINSTID" style="color:red"></label>
+    </div>
+    <br />
+    <div class="row">
+        @Html.CheckBoxFor(m => m.climbNotSub, new { @disabled = "disabled" })<label>ClimbNotSubmitted</label>
+    </div>
+}
+
+<script>
+    function coordNameinp() {
+        ShowLoader('#coordnameimg');
+        removeIcon('#coordnameicon');
+        if ($('#coordname').val() == '') {
+            HideLoader('#coordnameimg');s
+            searchIcon('#coordnameicon');
+        }
+    }
+    $("#coordname").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Url.Action("coorname", "Trans",new { area = "" })",
+                type: "POST",
+            dataType: "json",
+            data: { coordinatorName: request.term },
+            success: function (data) {
+            
+                HideLoader("#coordnameimg");
+                if (data.job == "s") {
+                    if (data.coordName.length == 0) {
+                        searchIcon("#coordnameicon");
+                    } else {
+                        BottomTriangleIcon("#coordnameicon");
+                    }
+                }
+                response($.map(data.coordName, function (item) {
+                    return { label: item.name, value: item.name, accno: item.accno, instid: item.instid };
+                }))
+            }
+        })
+    }, select: function (event, ui) {
+
+        $("#idInstid").val(ui.item.accno);
+        
+    },
+    }).autocomplete("instance")._renderItem = function (ul, item) {
+        return $("<li>")
+          .append("<div>" + item.instid + '<br>' + item.label + "<br>" + item.accno + "</div>")
+          .appendTo(ul);
+    };
+</script>

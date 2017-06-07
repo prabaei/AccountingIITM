@@ -1,0 +1,92 @@
+D:\iit db\25-1-2017\Accounting.Admin\bin\ApplicationInsights.config
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\csc.exe
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\System.Collections.Immutable.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\System.Reflection.Metadata.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\vbc.exe
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\VBCSCompiler.exe
+D:\iit db\25-1-2017\Accounting.Admin\bin\roslyn\VBCSCompiler.exe.config
+D:\iit db\25-1-2017\Accounting.Admin\bin\Accounting.Admin.dll.config
+D:\iit db\25-1-2017\Accounting.Admin\bin\Accounting.Admin.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Accounting.Admin.pdb
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.Agent.Intercept.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.DependencyCollector.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.Web.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.WindowsServer.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.ApplicationInsights.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.Web.Infrastructure.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Helpers.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Mvc.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Razor.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Webpages.Deployment.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Webpages.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Webpages.Razor.dll
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.DependencyCollector.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.Web.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.AI.WindowsServer.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.ApplicationInsights.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Razor.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Webpages.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Webpages.Deployment.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Webpages.Razor.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Helpers.xml
+D:\iit db\25-1-2017\Accounting.Admin\bin\System.Web.Mvc.xml
+D:\iit db\25-1-2017\Accounting.Admin\obj\Debug\Accounting.Admin.csprojResolveAssemblyReference.cache
+D:\iit db\25-1-2017\Accounting.Admin\obj\Debug\Accounting.Admin.dll
+D:\iit db\25-1-2017\Accounting.Admin\obj\Debug\Accounting.Admin.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\ApplicationInsights.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\csc.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\vbc.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\VBCSCompiler.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Accounting.Admin.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Accounting.Admin.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Accounting.Admin.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.Web.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Helpers.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Mvc.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Razor.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Webpages.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Webpages.Razor.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.Web.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Razor.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Webpages.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Webpages.Razor.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Helpers.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\bin\System.Web.Mvc.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\obj\Debug\Accounting.Admin.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\obj\Debug\Accounting.Admin.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Admin\obj\Debug\Accounting.Admin.pdb

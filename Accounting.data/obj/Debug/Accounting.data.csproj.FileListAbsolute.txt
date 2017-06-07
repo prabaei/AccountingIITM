@@ -1,0 +1,75 @@
+D:\iit db\20-1-2017\Accounting.data\bin\Debug\Accounting.data.dll.config
+D:\iit db\20-1-2017\Accounting.data\bin\Debug\Accounting.data.dll
+D:\iit db\20-1-2017\Accounting.data\bin\Debug\Accounting.data.pdb
+D:\iit db\20-1-2017\Accounting.data\bin\Debug\EntityFramework.dll
+D:\iit db\20-1-2017\Accounting.data\bin\Debug\EntityFramework.SqlServer.dll
+D:\iit db\20-1-2017\Accounting.data\bin\Debug\EntityFramework.xml
+D:\iit db\20-1-2017\Accounting.data\bin\Debug\EntityFramework.SqlServer.xml
+D:\iit db\20-1-2017\Accounting.data\obj\Debug\Accounting.data.csprojResolveAssemblyReference.cache
+D:\iit db\20-1-2017\Accounting.data\obj\Debug\Accounting.data.dll
+D:\iit db\20-1-2017\Accounting.data\obj\Debug\Accounting.data.pdb
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\bin\Debug\Accounting.data.dll.config
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\bin\Debug\Accounting.data.dll
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\bin\Debug\Accounting.data.pdb
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\obj\Debug\Accounting.data.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\obj\Debug\Accounting.data.dll
+C:\Users\Administrator\Desktop\22-1-2017\Accounting.data\obj\Debug\Accounting.data.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\bin\Debug\Accounting.data.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\bin\Debug\Accounting.data.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\bin\Debug\Accounting.data.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\obj\Debug\Accounting.data.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\obj\Debug\Accounting.data.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\22-1-2017\Accounting.data\obj\Debug\Accounting.data.csprojResolveAssemblyReference.cache
+D:\iit db\25-1-2017\Accounting.data\bin\Debug\Accounting.data.dll.config
+D:\iit db\25-1-2017\Accounting.data\bin\Debug\Accounting.data.dll
+D:\iit db\25-1-2017\Accounting.data\bin\Debug\Accounting.data.pdb
+D:\iit db\25-1-2017\Accounting.data\bin\Debug\EntityFramework.dll
+D:\iit db\25-1-2017\Accounting.data\bin\Debug\EntityFramework.SqlServer.dll
+D:\iit db\25-1-2017\Accounting.data\bin\Debug\EntityFramework.xml
+D:\iit db\25-1-2017\Accounting.data\bin\Debug\EntityFramework.SqlServer.xml
+D:\iit db\25-1-2017\Accounting.data\obj\Debug\Accounting.data.dll
+D:\iit db\25-1-2017\Accounting.data\obj\Debug\Accounting.data.pdb
+D:\iit db\25-1-2017\Accounting.data\obj\Debug\Accounting.data.csprojResolveAssemblyReference.cache
+D:\iit db\Accounting.data\bin\Debug\Accounting.data.dll.config
+D:\iit db\Accounting.data\bin\Debug\Accounting.data.dll
+D:\iit db\Accounting.data\bin\Debug\Accounting.data.pdb
+D:\iit db\Accounting.data\bin\Debug\EntityFramework.dll
+D:\iit db\Accounting.data\bin\Debug\EntityFramework.SqlServer.dll
+D:\iit db\Accounting.data\bin\Debug\EPPlus.dll
+D:\iit db\Accounting.data\bin\Debug\EntityFramework.xml
+D:\iit db\Accounting.data\bin\Debug\EntityFramework.SqlServer.xml
+D:\iit db\Accounting.data\bin\Debug\EPPlus.xml
+D:\iit db\Accounting.data\obj\Debug\Accounting.data.csprojResolveAssemblyReference.cache
+D:\iit db\Accounting.data\obj\Debug\Accounting.data.dll
+D:\iit db\Accounting.data\obj\Debug\Accounting.data.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\Accounting.data.dll.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\Accounting.data.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\Accounting.data.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\EPPlus.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.Mvc.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.Razor.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.WebPages.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\EPPlus.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.Mvc.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.Razor.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.WebPages.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\Microsoft.Web.Infrastructure.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\obj\Debug\Accounting.data.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.data\obj\Debug\Accounting.data.pdb

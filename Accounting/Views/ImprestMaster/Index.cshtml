@@ -1,0 +1,243 @@
+﻿@using Accounting.Architecture.AccountHelpers
+@using Accounting.Models
+@using PagedList;
+@model ImprestMdl
+@{
+    ViewBag.Title = "Index";
+
+    if (TempData["ImprestMdl"] as ImprestMdl != null)
+    {
+        var tempmdl = TempData["ImprestMdl"];
+        TempData["ImprestMdl"] = tempmdl;
+
+    }
+}
+
+<br />
+<div class="alert @ViewData["alertclass"]" id="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>@ViewData["alertmsg"] </strong>
+</div>
+
+<br />
+<div id="coordinator" style="display:normal">
+    @{Html.RenderPartial("_CoordinatorDetail",Model.cordmodel==null?new coordmodel():Model.cordmodel);}
+</div>
+<br />
+<div id="Grid" style="display:normal">
+    @{Html.RenderPartial("ImprestGrid", (Model.cordmodel.Imprestlist == null ? new List<ImprestCordinatorDetails>() : Model.cordmodel.Imprestlist).ToPagedList(ViewData["pageNumber"] == null ? 1 : (int)ViewData["pageNumber"], ViewData["pageSize"] == null ? 1 : (int)ViewData["pageSize"]));}
+</div>
+<h3>Project Details</h3>
+<hr />
+<div id="projectList" style="display:normal">
+
+    @{ Html.RenderPartial("ProjectDetailView", Model.projectmodel == null ? new ProjectMdl() : Model.projectmodel);}
+
+</div>
+<div style="display:normal">
+    @{ Html.RenderPartial("_singleproject", Model.imprestprojectdetails == null ? new ImprestProjectDetails() : Model.imprestprojectdetails);}
+</div>
+<h3>Payment Details</h3>
+<hr />
+<div id="paymentList" style="display:normal">
+    @{ Html.RenderPartial("_PaymentDetailsList", Model.paymentmodel == null ? new PaymentMdl() : Model.paymentmodel);}
+</div>
+
+<div style="display:normal">
+    @{ Html.RenderPartial("_PaymentDetail", (Model.paymentdetails == null) ? new paymentDetails() : Model.paymentdetails);}
+</div>
+
+<div id="addtoImprestMaster">
+    <h3>Account Detail</h3>
+    <hr />
+    @using (Html.BeginForm("AccountDetails", "ImprestMaster", FormMethod.Post, new { }))
+    {
+
+        @Html.HiddenFor(m => m.accountdetail.conf)
+
+        //payment details...
+        @Html.HiddenFor(m => m.paymentdetails.AmountPayed)
+        @Html.HiddenFor(m => m.paymentdetails.dateofDrawn)
+        @Html.HiddenFor(m => m.paymentdetails.VoucherNo)
+
+        //project details..
+        @Html.HiddenFor(m => m.imprestprojectdetails.ProjectNo)
+        @Html.HiddenFor(m => m.imprestprojectdetails.ProjectStartDate)
+        @Html.HiddenFor(m => m.imprestprojectdetails.ProjectCloseDate)
+
+        //coordinator details
+        @Html.HiddenFor(m => m.cordmodel.cordDetails.Department)
+        @Html.HiddenFor(m => m.cordmodel.cordDetails.IIRNO)
+        @Html.HiddenFor(m => m.cordmodel.cordDetails.Name)
+
+        //@Html.HiddenFor(m => m.imprestprojectdetails )
+        @Html.AccountLabelFor(m => m.accountdetail.BankAccountNumber, new { })
+        @Html.AccountTextBoxFor(m => m.accountdetail.BankAccountNumber, new { })
+        @Html.ValidationMessageFor(m => m.accountdetail.BankAccountNumber, null, new { @style = "color:red" })
+        <br />
+        @Html.AccountLabelFor(m => m.accountdetail.Limit, new { })
+        @Html.AccountTextBoxFor(m => m.accountdetail.Limit, new { })
+        // @Html.ValidationMessageFor(m => m.accountdetail.BankAccountNumber, null, new { @style = "color:red" })
+        <br />
+        if (Model.cordmodel.cordDetails.Name != null && Model.imprestprojectdetails.ProjectStartDate != null && Model.paymentdetails.AmountPayed != null)
+        {
+            <button class="btn btn-success">Submit</button>
+        }
+        else
+        {
+            <button disabled class="btn btn-success">Submit</button>
+        }
+       <!-- Trigger the modal with a button -->
+        @*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Submit</button>*@
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog" style="z-index:9999">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Confirmation Screen</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <td>Institute Id</td>
+                                <td>@Model.cordmodel.cordDetails.IIRNO</td>
+                            </tr>
+                            <tr>
+                                <td>Coordinator Name</td>
+                                <td>@Model.cordmodel.cordDetails.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Department</td>
+                                <td>@Model.cordmodel.cordDetails.Department</td>
+                            </tr>
+
+
+                            <tr>
+                                <td>Project No</td>
+                                <td>@Model.imprestprojectdetails.ProjectNo</td>
+                            </tr>
+                            <tr>
+                                <td>Start Date</td>
+                                <td>@Model.imprestprojectdetails.ProjectStartDate</td>
+                            </tr>
+                            <tr>
+                                <td>Close Date</td>
+                                <td>@Model.imprestprojectdetails.ProjectCloseDate</td>
+                            </tr>
+                            <tr>
+                                <td>Voucher No</td>
+                                <td>@Model.paymentdetails.VoucherNo</td>
+                            </tr>
+                            <tr>
+                                <td>Amount Paid</td>
+                                <td>@Model.paymentdetails.AmountPayed</td>
+                            </tr>
+                            <tr>
+                                <td>Date Of Drawn</td>
+                                <td>@Model.paymentdetails.dateofDrawn</td>
+                            </tr>
+                            <tr>
+                                <td>Account No</td>
+                                <td>@Model.accountdetail.BankAccountNumber</td>
+                            </tr>
+                            <tr>
+                                <td>Limit</td>
+                                <td>@Model.accountdetail.Limit</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success">Confirm</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="discard()">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<script>
+    function discard() {
+        $("#accountdetail_conf").val("discard");
+
+    }
+    
+    $(function () {
+        $("#alert").hide();
+        $("#myModal").on("hidden.bs.modal", function () {
+            
+        });
+        if ($("#accountdetail_conf").val() == "ok") {
+            $('#myModal').modal('show');
+        }
+        if ($("#accountdetail_conf").val() == "saved") {
+            $("#alert").show();
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 4000);
+        }
+        if ($("#accountdetail_conf").val() === "duplicate") {
+            $('#alert').show();
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 4000);
+        }
+    });
+    //$(function(){
+    //    var $table = $('#bodytable'),
+    //            $bodyCells = $table.find('tbody tr:first').children(),
+    //            colWidth;
+
+    //    // Get the tbody columns width array
+    //    colWidth = $bodyCells.map(function () {
+    //        return $(this).width();
+    //    }).get();
+
+    //    $table = $('#headtable');
+    //    // Set the width of thead columns
+    //    $table.find('thead tr').children().each(function (i, v) {
+    //        $(v).width(colWidth[i]);
+    //    });
+    //});
+
+
+    @*var searchTimeout;
+        var Imprestmaster = {
+            searchurl: '@Url.Action("Search", "ImprestMaster")'
+        }
+        function search() {
+            console.log("inside");
+            window.clearTimeout(searchTimeout);
+            searchTimeout = window.setTimeout(function () {
+                initiateSearch();
+            }, 500);
+        }
+
+        function initiateSearch() {
+            //alert($("#APRLNO").val());
+            $.ajax({
+                type: "GET",
+                url: Imprestmaster.searchurl,
+                data: { IIRNO: $("#IIRNO").val(), Name: $("#Name").val(), Department: $("#Department").val() },
+                //contentType: "application/json; charset=utf-8",
+                // dataType: "json",
+                success: function (result) {
+                    // alert(result);
+                    $("#Grid").html(result);
+                }
+            });
+        }*@
+  
+
+</script>

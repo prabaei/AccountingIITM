@@ -1,0 +1,16 @@
+﻿@model Accounting.Models.CoordinatorMaster.Search
+    @Html.ValidationMessageFor(m => m.valid, null, new { @style="color:red"})
+<div class="row">
+
+    <div class="col-xs-6 form-group">
+        @Html.LabelFor(m => m.IIRNO, new { })
+        @Html.TextBoxFor(m => m.IIRNO, new { @class = "form-control", @placeholder = "Search By IIRNO" })
+    </div>
+    <div class="col-xs-6 form-group">
+        @Html.LabelFor(m => m.Name, new { })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Search By Name" })
+    </div>  
+    
+</div>
+
+

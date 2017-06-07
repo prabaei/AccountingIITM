@@ -1,0 +1,51 @@
+﻿@model PaymentMdl
+@using PagedList;
+@using PagedList.Mvc;
+
+
+@using (Html.BeginForm("PaymentDetails", "ImprestMaster", FormMethod.Post, new { }))
+{
+    @Html.CTextBoxFor(m => m.VoucherNo, new { placeholder = "Enter Voucher No", @class = "searchbox" },(bool)ViewData["enablePaymentInput"] )
+    @Html.ValidationMessageFor(m => m.VoucherNo, null, new { @style = "color:red" })
+
+    if ((bool)ViewData["enablePaymentInput"])
+    {
+        <button disabled type="submit" class="btn btn-success">search</button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-success">search</button>
+    }
+
+}
+@if (Model.paymentList != null)
+{
+    if (Model.paymentList.Count > 0)
+    {
+        <div style="display:@ViewData["paylist"]">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>Voucher No</td>
+                        <td>Date Of Drawn</td>
+                        <td>Amount Paid</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var rec in Model.paymentList.ToPagedList(ViewData["pageNumber"] == null ? 1 : (int)ViewData["pageNumber"], ViewData["pageSize"] == null ? 1 : (int)ViewData["pageSize"]))
+                    {
+                        <tr>
+                            <td>@rec.VoucherNo</td>
+                            <td>@rec.dateofDrawn</td>
+                            <td>@rec.AmountPayed</td>
+                            <td>@Html.ActionLink("select", "VoucherSelect", new { voucherno = rec.VoucherNo }, new { @class = "btn btn-success" })</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model.paymentList.ToPagedList(ViewData["pageNumber"] == null ? 1 : (int)ViewData["pageNumber"], ViewData["pageSize"] == null ? 1 : (int)ViewData["pageSize"]), page => Url.Action("PaymentDetails", new { page = page }))
+        </div>
+    }
+}

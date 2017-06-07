@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ImprestMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccTransaction">
+    <Key>
+      <PropertyRef Name="TransNO" />
+      <PropertyRef Name="BankAccountNO" />
+    </Key>
+    <Property Name="TransNO" Type="String" MaxLength="23" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BankAccountNO" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="INSTID" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectNo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="voucherType" Type="Int32" />
+    <Property Name="voucherNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="bankDate" Type="DateTime" Precision="3" />
+    <Property Name="currentBal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="AvailableBal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ChequeNO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="narration" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TransCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransUpdated" Type="DateTime" Precision="3" />
+    <Property Name="CommitmentNO" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="TransCommited" Type="Boolean" Nullable="false" />
+    <Property Name="UserEmail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectType" Type="Int32" />
+    <Property Name="Head" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="deleted" Type="Boolean" Nullable="false" />
+    <Property Name="orderId" Type="Int32" />
+    <Property Name="brsDone" Type="Boolean" Nullable="false" />
+    <Property Name="CNS" Type="Boolean" Nullable="false" />
+    <Property Name="Recoupid" Type="String" MaxLength="33" FixedLength="false" Unicode="true" />
+    <Property Name="RecupDone" Type="Boolean" Nullable="false" />
+    <Property Name="BankPart" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="supplier" Type="Int32" Nullable="false" />
+    <Property Name="ChequeDt" Type="DateTime" Precision="3" />
+    <Property Name="MailSent" Type="Boolean" Nullable="false" />
+    <Property Name="MailDelivered" Type="Boolean" Nullable="false" />
+    <Property Name="migrated" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChequeNotDep">
+    <Key>
+      <PropertyRef Name="Tranno" />
+      <PropertyRef Name="Accno" />
+    </Key>
+    <Property Name="Tranno" Type="String" MaxLength="23" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Accno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClimNotSubmitted">
+    <Key>
+      <PropertyRef Name="Tranno" />
+      <PropertyRef Name="Accno" />
+    </Key>
+    <Property Name="Tranno" Type="String" MaxLength="23" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Accno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mailsent" Type="Boolean" Nullable="false" />
+    <Property Name="mailDelivered" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Country1" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Error" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LoggedAt" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ImprestMaster">
+    <Key>
+      <PropertyRef Name="BankAccountNo" />
+    </Key>
+    <Property Name="BankAccountNo" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InstituteId" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="CoordinatorName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Designation" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CUSTID" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="CardNO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="Limit" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Migrated">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="AccountNo" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Autoid" Type="Int32" Nullable="false" />
+    <Property Name="TallyMasterId" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="voucherId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VoucherNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="voucherDate" Type="DateTime" Precision="3" />
+    <Property Name="voucherType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LedgerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BillName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Credit" Type="Boolean" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Narration" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="InstrumentNO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="InstrumentType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="InstrumentBank" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="addDate" Type="DateTime" Precision="3" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="projectNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="appledgername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CostCentreName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="currentBal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MigratedVoucher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="voucherType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="crdit" Type="Boolean" Nullable="false" />
+    <Property Name="voucherId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MonthlyBalance">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Accno" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Accno" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="bankBalance" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectTypeTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrjType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RecoupRecord">
+    <Key>
+      <PropertyRef Name="RecoupId" />
+    </Key>
+    <Property Name="RecoupId" Type="String" MaxLength="33" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AccountNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SupplierMstr">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="District" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="Int32" Nullable="false" />
+    <Property Name="PIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BillNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="Projectno" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InstituteId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="projectType" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSess">
+    <Key>
+      <PropertyRef Name="userEmail" />
+    </Key>
+    <Property Name="userEmail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sessionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserTbl">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Int32" Nullable="false" />
+    <Property Name="UserPassword" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="UsrRole" Type="Int32" Nullable="false" />
+    <Property Name="NewReg" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VoucherSubType">
+    <Key>
+      <PropertyRef Name="SubTypeID" />
+    </Key>
+    <Property Name="SubTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherTypeId" Type="Int32" />
+    <Property Name="VoucherType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VoucherType">
+    <Key>
+      <PropertyRef Name="TypeId" />
+    </Key>
+    <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherTypeName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="deposit" Type="Boolean" Nullable="false" />
+    <Property Name="ForEntry" Type="Boolean" Nullable="false" />
+    <Property Name="Brs" Type="Boolean" Nullable="false" />
+    <Property Name="cns" Type="Boolean" Nullable="false" />
+    <Property Name="recoup" Type="Boolean" Nullable="false" />
+    <Property Name="cq" Type="Boolean" Nullable="false" />
+    <Property Name="creditoFacc" Type="Boolean" Nullable="false" />
+    <Property Name="depositdd" Type="Boolean" Nullable="false" />
+    <Property Name="wddd" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ImprestMVCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AccTransactions" EntityType="Self.AccTransaction" />
+    <EntitySet Name="ChequeNotDeps" EntityType="Self.ChequeNotDep" />
+    <EntitySet Name="ClimNotSubmitteds" EntityType="Self.ClimNotSubmitted" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLog" />
+    <EntitySet Name="ImprestMasters" EntityType="Self.ImprestMaster" />
+    <EntitySet Name="Migrateds" EntityType="Self.Migrated" />
+    <EntitySet Name="MigratedVouchers" EntityType="Self.MigratedVoucher" />
+    <EntitySet Name="MonthlyBalances" EntityType="Self.MonthlyBalance" />
+    <EntitySet Name="ProjectTypeTables" EntityType="Self.ProjectTypeTable" />
+    <EntitySet Name="RecoupRecords" EntityType="Self.RecoupRecord" />
+    <EntitySet Name="SupplierMstrs" EntityType="Self.SupplierMstr" />
+    <EntitySet Name="UserSesses" EntityType="Self.UserSess" />
+    <EntitySet Name="UserTbls" EntityType="Self.UserTbl" />
+    <EntitySet Name="VoucherSubTypes" EntityType="Self.VoucherSubType" />
+    <EntitySet Name="VoucherTypes" EntityType="Self.VoucherType" />
+  </EntityContainer>
+</Schema>

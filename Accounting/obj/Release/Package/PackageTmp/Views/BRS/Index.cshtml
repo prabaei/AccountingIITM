@@ -1,0 +1,73 @@
+﻿@model Accounting.Models.BRS.brsMdl
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<style>
+    .ui-datepicker-calendar {
+        display: none;
+    }
+</style>
+@using (Html.BeginForm("importBankTxt", "BRS", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div style="text-align:right">
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ImportExcelFile">Import Bank Statement</button>
+    </div>
+    <!--Import model-->
+    <div id="ImportExcelFile" class="modal fade" role="dialog" style="z-index:999999">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Import Bank Statement</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="file" name="ImportAccountDetails" />(.txt Format)
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default">Ok</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("searchaccount", "BRS", FormMethod.Post, new { }))
+{
+    @*<div class="form-group col-sm-12 col-md-4 col-lg-4">
+        @Html.LabelFor(m => m.accountno)
+        <div class="" >
+            @Html.TextBoxFor(m => m.accountno, new { placeholder = "Account No", id = "FromDate", @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-4 col-lg-4">
+        @Html.LabelFor(m => m.TransactionMonth)
+        <div class="" >
+            @Html.TextBoxFor(m => m.TransactionMonth, new { placeholder = "Month and Year", id = "ToDate", @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-4 col-lg-4">
+        @Html.Label(" ")
+        <div class="" >
+            <button type="submit" class="btn btn-default">Search</button>
+        </div>
+    </div>*@
+}
+<script>
+    $(function () {
+        $("#ToDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            showButtonPanel: true,
+            dateFormat: 'MM yy',
+            onClose: function (dateText, inst) {
+                $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+            }
+        });
+    });
+</script>

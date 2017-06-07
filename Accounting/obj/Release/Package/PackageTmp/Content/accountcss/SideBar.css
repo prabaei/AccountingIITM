@@ -1,0 +1,76 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.children{
+    background:#708daa;
+}
+#nav-sidebar {
+    padding-top: 50px;
+    z-index: 500;
+    
+    min-height:100%;
+    position: fixed;
+    width: 0px;
+    background: #2C3E50;
+    overflow-x: hidden;
+    margin:0;
+    /*border:2px solid red;*/
+}
+
+    #nav-sidebar.hidemenu #nav-sidebar {
+        width: 200px;
+    }
+
+    #nav-sidebar.hidemenu #main-content {
+        padding-left: 200px;
+        
+    }
+
+#main-content  {
+    padding-left: 0px;
+    padding-top: 80px;
+    position:absolute;
+    width:100%;
+    /*border:3px solid red;*/
+}
+
+#nav-sidebar ul {
+    list-style: none;
+    line-height: 20px;
+    padding: 0;
+}
+
+    #nav-sidebar ul li > a {
+        display: block;
+        padding: 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding-left: 20px;
+        color: #ddd;
+    }
+
+#nav-sidebar ul li a:hover {
+background: #16A085;
+}
+
+
+#account-nav-top {
+    height: 50px;
+    background: #ddd;
+    width:100%;
+    position:fixed;
+    z-index:2000;
+}
+
+
+.nav-sidebar .child .children ul li >a{
+    color:#2C3E50;   
+}
+
+.vcenter {
+    transform: translateY(20%);
+}
+

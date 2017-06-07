@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="accounting" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2015\\Projects\\Accounting\\Accounting\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2015\\Projects\\Accounting\\Accounting\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="AccountingDbModel-Web.config Connection String" description="" value="data source=USER1-PC\SQLEXPRESS;initial catalog=Accounting;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2015\\Projects\\Accounting\\Accounting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AccountingDbModel']/@connectionString" />
+  </parameter>
+  <parameter name="FACCT-Web.config Connection String" description="" value="Data Source=USER1-PC;Initial Catalog=FACCT;Integrated Security=False;User Id=sa;Password=IcsR@123#;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2015\\Projects\\Accounting\\Accounting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FACCT']/@connectionString" />
+  </parameter>
+  <parameter name="FoxOfficeDb-Web.config Connection String" description="" value="Data Source=USER1-PC;Initial Catalog=FoxOffice;Integrated Security=False;User Id=sa;Password=IcsR@123#;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2015\\Projects\\Accounting\\Accounting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FoxOfficeDb']/@connectionString" />
+  </parameter>
+  <parameter name="PCFACCT-Web.config Connection String" description="" value="Data Source=USER1-PC;Initial Catalog=PCFACCT;Integrated Security=False;User Id=sa;Password=IcsR@123#;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Administrator\\Documents\\Visual\ Studio\ 2015\\Projects\\Accounting\\Accounting\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='PCFACCT']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AccountingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AccTransaction">
+    <Key>
+      <PropertyRef Name="TransNO" />
+    </Key>
+    <Property Name="TransNO" Type="String" MaxLength="23" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="INSTID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="voucherType" Type="Int32" />
+    <Property Name="voucherNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="bankDate" Type="DateTime" Precision="3" />
+    <Property Name="currentBal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="AvailableBal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ChequeNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TransCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransUpdated" Type="DateTime" Precision="3" />
+    <Property Name="TransCommited" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImprestMaster">
+    <Key>
+      <PropertyRef Name="InstituteId" />
+    </Key>
+    <Property Name="InstituteId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CoordinatorName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Designation" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccountNo" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="Limit" Type="Decimal" Precision="20" Scale="0" />
+  </EntityType>
+  <EntityType Name="VoucherSubType">
+    <Key>
+      <PropertyRef Name="SubTypeID" />
+    </Key>
+    <Property Name="SubTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherTypeId" Type="Int32" />
+    <Property Name="VoucherType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VoucherType">
+    <Key>
+      <PropertyRef Name="TypeId" />
+    </Key>
+    <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherTypeName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="AccountingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AccTransactions" EntityType="Self.AccTransaction" />
+    <EntitySet Name="ImprestMasters" EntityType="Self.ImprestMaster" />
+    <EntitySet Name="VoucherSubTypes" EntityType="Self.VoucherSubType" />
+    <EntitySet Name="VoucherTypes" EntityType="Self.VoucherType" />
+    <FunctionImport Name="commitTran">
+      <Parameter Name="TransNo" Mode="In" Type="String" />
+      <Parameter Name="ProjectNo" Mode="In" Type="String" />
+      <Parameter Name="voucherType" Mode="In" Type="Int32" />
+      <Parameter Name="voucherNo" Mode="In" Type="String" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="bankDate" Mode="In" Type="DateTime" />
+      <Parameter Name="chequeno" Mode="In" Type="String" />
+      <Parameter Name="narration" Mode="In" Type="String" />
+      <Parameter Name="remarks" Mode="In" Type="String" />
+      <Parameter Name="currentamount" Mode="InOut" Type="Decimal" />
+      <Parameter Name="avilableamount" Mode="InOut" Type="Decimal" />
+      <Parameter Name="errmsg" Mode="InOut" Type="String" />
+      <Parameter Name="transdone" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="createTran">
+      <Parameter Name="instid" Mode="In" Type="String" />
+      <Parameter Name="TransactionNo" Mode="InOut" Type="String" />
+      <Parameter Name="isFailed" Mode="InOut" Type="Boolean" />
+      <Parameter Name="ermsg" Mode="InOut" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,64 @@
+﻿@using Accounting.Models.CoordinatorMaster
+@model List<gridMdl>
+<div id="grid">
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <table>
+                @foreach (var rec in Model)
+                {
+                    <tr>
+                        <td>@rec.IIRNO</td>
+                    </tr>
+                    <tr>
+                        <td>@rec.Name</td>
+                    </tr>
+                    <tr>
+                        <td>@rec.Dept</td>
+                    </tr>
+                }
+                
+            </table>
+        </div>
+        <div class="panel-footer">
+            PageSize: @Html.DropDownList("PageSize", new List<SelectListItem>() { new SelectListItem() {Value="10",Text="10" },
+           new SelectListItem() {Value="15",Text="15" },
+           new SelectListItem() {Value="20",Text="20" },
+       }, new { @id = "gridPageSize", @onchange = "fun()" })
+
+            <ul class="pagination">
+                <li><a id="leftarrow" href="#"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a></li>
+            </ul>
+            <ul class="pagination pageno">
+
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+            </ul>
+            <ul class="pagination">
+                <li><a id="rightarrow" href="#"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $('.pageno').children("li").click(function (e) {
+        e.preventDefault();
+        alert($(this).children("a").text());
+    });
+    $("#leftarrow").click(function (e) {
+        e.preventDefault();
+        alert("left arrow");
+    });
+    $("#rightarrow").click(function (e) {
+        e.preventDefault();
+        alert("right arrow");
+    });
+
+
+</script>

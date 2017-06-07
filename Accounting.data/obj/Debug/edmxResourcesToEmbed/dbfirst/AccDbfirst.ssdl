@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ImprestMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccTransaction">
+    <Key>
+      <PropertyRef Name="TransNO" />
+      <PropertyRef Name="BankAccountNO" />
+    </Key>
+    <Property Name="TransNO" Type="nvarchar" MaxLength="23" Nullable="false" />
+    <Property Name="BankAccountNO" Type="nvarchar" MaxLength="14" Nullable="false" />
+    <Property Name="INSTID" Type="nvarchar" MaxLength="6" />
+    <Property Name="ProjectNo" Type="nvarchar" MaxLength="250" />
+    <Property Name="voucherType" Type="int" />
+    <Property Name="voucherNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="bankDate" Type="datetime" />
+    <Property Name="currentBal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="AvailableBal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ChequeNO" Type="nvarchar" MaxLength="20" />
+    <Property Name="narration" Type="nvarchar" MaxLength="250" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="250" />
+    <Property Name="TransCreated" Type="datetime" Nullable="false" />
+    <Property Name="TransUpdated" Type="datetime" />
+    <Property Name="CommitmentNO" Type="nvarchar" MaxLength="8" />
+    <Property Name="TransCommited" Type="bit" Nullable="false" />
+    <Property Name="UserEmail" Type="nvarchar" MaxLength="80" />
+    <Property Name="ProjectType" Type="int" />
+    <Property Name="Head" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="deleted" Type="bit" Nullable="false" />
+    <Property Name="orderId" Type="int" />
+    <Property Name="brsDone" Type="bit" Nullable="false" />
+    <Property Name="CNS" Type="bit" Nullable="false" />
+    <Property Name="Recoupid" Type="nvarchar" MaxLength="33" />
+    <Property Name="RecupDone" Type="bit" Nullable="false" />
+    <Property Name="BankPart" Type="nvarchar" MaxLength="250" />
+    <Property Name="supplier" Type="int" Nullable="false" />
+    <Property Name="ChequeDt" Type="datetime" />
+    <Property Name="MailSent" Type="bit" Nullable="false" />
+    <Property Name="MailDelivered" Type="bit" Nullable="false" />
+    <Property Name="migrated" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChequeNotDep">
+    <Key>
+      <PropertyRef Name="Tranno" />
+      <PropertyRef Name="Accno" />
+    </Key>
+    <Property Name="Tranno" Type="nvarchar" MaxLength="23" Nullable="false" />
+    <Property Name="Accno" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClimNotSubmitted">
+    <Key>
+      <PropertyRef Name="Tranno" />
+      <PropertyRef Name="Accno" />
+    </Key>
+    <Property Name="Tranno" Type="nvarchar" MaxLength="23" Nullable="false" />
+    <Property Name="Accno" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="mailsent" Type="bit" Nullable="false" />
+    <Property Name="mailDelivered" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Error" Type="nvarchar(max)" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="LoggedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImprestMaster">
+    <Key>
+      <PropertyRef Name="BankAccountNo" />
+    </Key>
+    <Property Name="BankAccountNo" Type="nvarchar" MaxLength="14" Nullable="false" />
+    <Property Name="InstituteId" Type="nvarchar" MaxLength="4" />
+    <Property Name="CoordinatorName" Type="nvarchar" MaxLength="150" />
+    <Property Name="Department" Type="nvarchar" MaxLength="15" />
+    <Property Name="Designation" Type="nvarchar" MaxLength="150" />
+    <Property Name="CUSTID" Type="nvarchar" MaxLength="9" />
+    <Property Name="CardNO" Type="nvarchar" MaxLength="20" />
+    <Property Name="Amount" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="Limit" Type="decimal" Precision="20" Scale="0" />
+    <Property Name="Email" Type="nvarchar" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="Migrated">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="AccountNo" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountNo" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Autoid" Type="int" Nullable="false" />
+    <Property Name="TallyMasterId" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="voucherId" Type="nvarchar" MaxLength="100" />
+    <Property Name="VoucherNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="voucherDate" Type="datetime" />
+    <Property Name="voucherType" Type="nvarchar" MaxLength="100" />
+    <Property Name="LedgerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="BillName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Credit" Type="bit" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Narration" Type="nvarchar" MaxLength="100" />
+    <Property Name="InstrumentNO" Type="nvarchar" MaxLength="100" />
+    <Property Name="InstrumentType" Type="nvarchar" MaxLength="100" />
+    <Property Name="InstrumentBank" Type="nvarchar" MaxLength="100" />
+    <Property Name="addDate" Type="datetime" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="projectNo" Type="nvarchar" MaxLength="100" />
+    <Property Name="appledgername" Type="nvarchar" MaxLength="100" />
+    <Property Name="CostCentreName" Type="nvarchar(max)" />
+    <Property Name="currentBal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MigratedVoucher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="voucherType" Type="nvarchar(max)" />
+    <Property Name="crdit" Type="bit" Nullable="false" />
+    <Property Name="voucherId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MonthlyBalances">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Accno" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Accno" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="startDate" Type="datetime" Nullable="false" />
+    <Property Name="endDate" Type="datetime" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="bankBalance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectTypeTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrjType" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="RecoupRecord">
+    <Key>
+      <PropertyRef Name="RecoupId" />
+    </Key>
+    <Property Name="RecoupId" Type="nvarchar" MaxLength="33" Nullable="false" />
+    <Property Name="AccountNo" Type="nvarchar" MaxLength="25" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar(max)" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SupplierMstr">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address2" Type="nvarchar(max)" />
+    <Property Name="Address3" Type="nvarchar(max)" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="District" Type="nvarchar(max)" />
+    <Property Name="Country" Type="int" Nullable="false" />
+    <Property Name="PIN" Type="nvarchar(max)" />
+    <Property Name="BillNO" Type="nvarchar(max)" />
+    <Property Name="Amount" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+    <Property Name="Projectno" Type="nvarchar(max)" />
+    <Property Name="InstituteId" Type="nvarchar(max)" />
+    <Property Name="Pan" Type="nvarchar(max)" />
+    <Property Name="Tin" Type="nvarchar(max)" />
+    <Property Name="Tan" Type="nvarchar(max)" />
+    <Property Name="projectType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSess">
+    <Key>
+      <PropertyRef Name="userEmail" />
+    </Key>
+    <Property Name="userEmail" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="sessionId" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserTbl">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Gender" Type="int" Nullable="false" />
+    <Property Name="UserPassword" Type="varbinary(max)" />
+    <Property Name="UsrRole" Type="int" Nullable="false" />
+    <Property Name="NewReg" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VoucherSubType">
+    <Key>
+      <PropertyRef Name="SubTypeID" />
+    </Key>
+    <Property Name="SubTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VoucherTypeId" Type="int" />
+    <Property Name="VoucherType" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="VoucherType">
+    <Key>
+      <PropertyRef Name="TypeId" />
+    </Key>
+    <Property Name="TypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VoucherTypeName" Type="nvarchar" MaxLength="80" />
+    <Property Name="deposit" Type="bit" Nullable="false" />
+    <Property Name="ForEntry" Type="bit" Nullable="false" />
+    <Property Name="Brs" Type="bit" Nullable="false" />
+    <Property Name="cns" Type="bit" Nullable="false" />
+    <Property Name="recoup" Type="bit" Nullable="false" />
+    <Property Name="cq" Type="bit" Nullable="false" />
+    <Property Name="creditoFacc" Type="bit" Nullable="false" />
+    <Property Name="depositdd" Type="bit" Nullable="false" />
+    <Property Name="wddd" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ImprestMVCModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccTransaction" EntityType="Self.AccTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChequeNotDep" EntityType="Self.ChequeNotDep" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClimNotSubmitted" EntityType="Self.ClimNotSubmitted" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImprestMaster" EntityType="Self.ImprestMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Migrated" EntityType="Self.Migrated" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MigratedVoucher" EntityType="Self.MigratedVoucher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MonthlyBalances" EntityType="Self.MonthlyBalances" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectTypeTable" EntityType="Self.ProjectTypeTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecoupRecord" EntityType="Self.RecoupRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SupplierMstr" EntityType="Self.SupplierMstr" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserSess" EntityType="Self.UserSess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTbl" EntityType="Self.UserTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VoucherSubType" EntityType="Self.VoucherSubType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VoucherType" EntityType="Self.VoucherType" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

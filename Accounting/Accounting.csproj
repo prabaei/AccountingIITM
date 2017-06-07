@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F144DFAF-8716-4703-B90F-00F543660E2F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Accounting</RootNamespace>
+    <AssemblyName>Accounting</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.0\lib\net451\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.3\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.1.2.3\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.1.2.3\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.1.2.3\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.1.2.3\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\accountcss\AccountTable.css" />
+    <Content Include="Content\accountcss\AccTextbox.css" />
+    <Content Include="Content\accountcss\fixedsidebar.css" />
+    <Content Include="Content\accountcss\SearchHeadder.css" />
+    <Content Include="Content\accountcss\SideBar.css" />
+    <Content Include="Content\accountcss\topbutton.css" />
+    <Content Include="Content\accountstyle.css" />
+    <Content Include="Content\autocomplete\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\autocomplete\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\autocomplete\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\autocomplete\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\autocomplete\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\autocomplete\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\autocomplete\jquery-ui.css" />
+    <Content Include="Content\autocomplete\jquery-ui.structure.css" />
+    <Content Include="Content\autocomplete\jquery-ui.structure.min.css" />
+    <Content Include="Content\autocomplete\jquery-ui.theme.css" />
+    <Content Include="Content\autocomplete\jquery-ui.theme.min.css" />
+    <Content Include="Content\awsomeFontFamily\css\font-awesome.css" />
+    <Content Include="Content\awsomeFontFamily\css\font-awesome.min.css" />
+    <Content Include="Content\awsomeFontFamily\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DatePicker\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\DatePicker\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\DatePicker\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\DatePicker\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\DatePicker\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\DatePicker\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\DatePicker\jquery-ui.css" />
+    <Content Include="Content\DatePicker\jquery-ui.min.css" />
+    <Content Include="Content\DatePicker\jquery-ui.structure.css" />
+    <Content Include="Content\DatePicker\jquery-ui.structure.min.css" />
+    <Content Include="Content\DatePicker\jquery-ui.theme.css" />
+    <Content Include="Content\DatePicker\jquery-ui.theme.min.css" />
+    <Content Include="Content\dialog\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\dialog\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\dialog\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\dialog\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\dialog\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\dialog\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\dialog\jquery-ui.css" />
+    <Content Include="Content\dialog\jquery-ui.min.css" />
+    <Content Include="Content\dialog\jquery-ui.structure.css" />
+    <Content Include="Content\dialog\jquery-ui.structure.min.css" />
+    <Content Include="Content\dialog\jquery-ui.theme.css" />
+    <Content Include="Content\dialog\jquery-ui.theme.min.css" />
+    <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\Images\backtotopicon.png" />
+    <Content Include="Content\Images\blue.gif" />
+    <Content Include="Content\Images\crossts.png" />
+    <Content Include="Content\Images\ezgif.com-crop.gif" />
+    <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\menu-icon.png" />
+    <Content Include="Content\Images\spinwheel.gif" />
+    <Content Include="Content\Images\tranparentticks.png" />
+    <Content Include="Content\Images\warning100.png" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\selectable\jquery-ui.css" />
+    <Content Include="Content\selectable\jquery-ui.min.css" />
+    <Content Include="Content\selectable\jquery-ui.structure.css" />
+    <Content Include="Content\selectable\jquery-ui.structure.min.css" />
+    <Content Include="Content\selectable\jquery-ui.theme.css" />
+    <Content Include="Content\selectable\jquery-ui.theme.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\sortable\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\sortable\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\sortable\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\sortable\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\sortable\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\sortable\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\sortable\jquery-ui.css" />
+    <Content Include="Content\sortable\jquery-ui.min.css" />
+    <Content Include="Content\sortable\jquery-ui.structure.css" />
+    <Content Include="Content\sortable\jquery-ui.structure.min.css" />
+    <Content Include="Content\sortable\jquery-ui.theme.css" />
+    <Content Include="Content\sortable\jquery-ui.theme.min.css" />
+    <Content Include="ErrorLogger\errlog.txt" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="scripts\Account\AccountCommon.js" />
+    <Content Include="scripts\Account\fixedSidebar.js" />
+    <Content Include="scripts\Account\sidebar.js" />
+    <Content Include="scripts\ai.0.15.0-build58334.js" />
+    <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\autocomplete\jquery-ui.js" />
+    <Content Include="scripts\autocomplete\jquery-ui.min.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="Areas\admin\Views\web.config" />
+    <Content Include="Areas\admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\admin\Views\Demo\Index.cshtml" />
+    <Content Include="Content\awsomeFontFamily\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\awsomeFontFamily\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\awsomeFontFamily\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\awsomeFontFamily\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\awsomeFontFamily\fonts\FontAwesome.otf" />
+    <Content Include="json\trans.json" />
+    <Content Include="Areas\admin\Views\StaffReg\Register.cshtml" />
+    <Content Include="Areas\admin\Views\Shared\_LayoutWithpanel.cshtml" />
+    <Content Include="Areas\admin\Views\Panel\Index.cshtml" />
+    <Content Include="Grid.mvc.readme" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\accounting.pubxml" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\DatePicker\jquery-ui.js" />
+    <Content Include="scripts\DatePicker\jquery-ui.min.js" />
+    <Content Include="scripts\Dialog\jquery-ui.js" />
+    <Content Include="scripts\Dialog\jquery-ui.min.js" />
+    <Content Include="scripts\gridmvc.js" />
+    <Content Include="scripts\gridmvc.lang.ru.js" />
+    <Content Include="scripts\gridmvc.min.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\jquery.dataTables.min.js" />
+    <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\pdfmake.min.js" />
+    <Content Include="scripts\selectable\jquery-ui.js" />
+    <Content Include="scripts\selectable\jquery-ui.min.js" />
+    <Content Include="scripts\Sortable\jquery-ui.js" />
+    <Content Include="scripts\Sortable\jquery-ui.min.js" />
+    <Content Include="SqlFiles\acctran_delete_default.sql" />
+    <Content Include="SqlFiles\commitTran.sql" />
+    <Content Include="SqlFiles\country.sql" />
+    <Content Include="SqlFiles\createAdmin.sql" />
+    <Content Include="SqlFiles\createRecoupTran.sql" />
+    <Content Include="SqlFiles\createTran.sql" />
+    <Content Include="SqlFiles\database.txt" />
+    <Content Include="SqlFiles\GENERATERECOUPID.sql" />
+    <Content Include="SqlFiles\GENERATETRANSID.sql" />
+    <Content Include="SqlFiles\InsertUserTbl.sql" />
+    <Content Include="SqlFiles\projectType.sql" />
+    <Content Include="SqlFiles\RESETPASSWORD.sql" />
+    <Content Include="SqlFiles\verifyUser.sql" />
+    <Content Include="SqlFiles\voucherType.sql" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountAuthorize\AccountAutherize.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\admin\adminAreaRegistration.cs" />
+    <Compile Include="Areas\admin\Controllers\DemoController.cs" />
+    <Compile Include="Areas\admin\Controllers\PanelController.cs" />
+    <Compile Include="Areas\admin\Controllers\StaffRegController.cs" />
+    <Compile Include="Controllers\BRSController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImprestMstrController.cs" />
+    <Compile Include="Controllers\NewAccountController.cs" />
+    <Compile Include="Controllers\RecoupController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\StaticContentController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\TestMailController.cs" />
+    <Compile Include="Controllers\TransController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BRS\brsMdl.cs" />
+    <Compile Include="Models\BRS\JsonModel.cs" />
+    <Compile Include="Models\CoordinatorMaster\CoordModel.cs" />
+    <Compile Include="Models\ImprestMaster\ImprestMasterModel.cs" />
+    <Compile Include="Models\ImprestMstr\ImprestMstrMdl.cs" />
+    <Compile Include="Models\Login\LoginMdl.cs" />
+    <Compile Include="Models\Login\Register.cs" />
+    <Compile Include="Models\Recoup\RecoupMdl.cs" />
+    <Compile Include="Models\reports\SearchCriteria.cs" />
+    <Compile Include="Models\staff\Resetpassword.cs" />
+    <Compile Include="Models\Supplier\SupplierMdl.cs" />
+    <Compile Include="Models\Trans\Commitmdl.cs" />
+    <Compile Include="Models\Trans\TransMdl.cs" />
+    <Compile Include="Models\Trans\VoucherMdl.cs" />
+    <Compile Include="Models\Trans\VouDetail.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\ImprestMaster\Index.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\ImprestMaster\ImprestGrid.cshtml" />
+    <Content Include="Views\ImprestMaster\Select.cshtml" />
+    <Content Include="Views\ImprestMaster\ProjectDetailView.cshtml" />
+    <Content Include="Views\ImprestMaster\_PaymentDetailsList.cshtml" />
+    <Content Include="Views\ImprestMaster\_singleproject.cshtml" />
+    <Content Include="Views\ImprestMaster\_PaymentDetail.cshtml" />
+    <Content Include="Views\ImprestMaster\_CoordinatorDetail.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Accounting.cshtml" />
+    <Content Include="Views\Staff\Login.cshtml" />
+    <Content Include="Views\Shared\_SidePanel.cshtml" />
+    <Content Include="Views\Coordinator\Details.cshtml" />
+    <Content Include="Views\Coordinator\_openProjectList.cshtml" />
+    <Content Include="Views\Coordinator\_closedProjectList.cshtml" />
+    <Content Include="Views\Coordinator\_search.cshtml" />
+    <Content Include="Views\Coordinator\_gridView.cshtml" />
+    <Content Include="Views\ImprestMstr\Index.cshtml" />
+    <Content Include="Views\Trans\Index.cshtml" />
+    <Content Include="Views\Staff\Registration.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithpanel.cshtml" />
+    <Content Include="Views\Staff\ResetPassword.cshtml" />
+    <Content Include="Views\StaticContent\PageNotFound.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Shared\_GridPager.cshtml" />
+    <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\ImprestMstr\AccountGrid.cshtml" />
+    <Content Include="Views\Trans\AccountTrans.cshtml" />
+    <Content Include="Views\StaticContent\ErrorPage.cshtml" />
+    <Content Include="Views\Trans\Edit.cshtml" />
+    <Content Include="Views\BRS\Index.cshtml" />
+    <Content Include="Views\BRS\BrsResult.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\ClimNotSubmitted.cshtml" />
+    <Content Include="Views\Recoup\Index.cshtml" />
+    <Content Include="Views\Trans\IndexEdit.cshtml" />
+    <Content Include="Views\Trans\IndexUp.cshtml" />
+    <Content Include="Views\Trans\VoucherDetails.cshtml" />
+    <Content Include="Views\Shared\Close.cshtml" />
+    <Content Include="Views\Trans\VoucherDetailsed.cshtml" />
+    <Content Include="Views\Supplier\List.cshtml" />
+    <Content Include="Views\Recoup\RecoupSelect.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\admin\Models\" />
+    <Folder Include="Content\selectable\images\" />
+    <Folder Include="Views\NewAccount\" />
+    <Folder Include="Views\TestMail\" />
+    <Folder Include="Views\TransUp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Accounting.data\Accounting.data.csproj">
+      <Project>{ae3121b5-09ad-4745-b5a0-07f69d671278}</Project>
+      <Name>Accounting.data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2432</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2432/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' == ''" />
+  <PropertyGroup>
+    <SsdtUnitTestVersion>2.0</SsdtUnitTestVersion>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

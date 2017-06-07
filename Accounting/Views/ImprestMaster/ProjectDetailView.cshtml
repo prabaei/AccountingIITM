@@ -1,0 +1,65 @@
+﻿@model ProjectMdl
+@using PagedList;
+@using PagedList.Mvc;
+@using Accounting.Models
+@{
+    ViewBag.Title = "ProjectDetailView";
+}
+
+
+
+
+
+
+@using (Html.BeginForm("projectsearch","ImprestMaster",FormMethod.Post, new { }))
+{
+    @Html.CTextBoxFor(m=>m.projectNo, new { placeholder = "ProjectNO", @class = "searchbox"  },(bool)ViewData["projectinput"] ) 
+    @Html.ValidationMessageFor(m=>m.projectNo,null, new { @style = "color:red" } )
+     <span>&nbsp;</span>
+    if ((bool)ViewData["projectinput"])
+    {
+        <button disabled type="submit" class="btn btn-success">search</button>
+    }
+    else
+    {
+
+        <button type="submit" class="btn btn-success">search</button>
+    }
+
+}
+
+@if (Model.ProjectList != null)
+{
+    if (Model.ProjectList.Count > 0)
+    {
+        <div style="display:@ViewData["projectList"]">
+            <table class="table table-hover">
+                <thead>
+
+                    <tr>
+                        <th>Project NO</th>
+                        <th>Project Start Date</th>
+                        <th>Project Close Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+
+                        foreach (var rec in Model.ProjectList.ToPagedList(ViewData["pageNumber"] == null ? 1 : (int)ViewData["pageNumber"], ViewData["pageSize"] == null ? 1 : (int)ViewData["pageSize"]))
+                        {
+                            <tr>
+                                <td>@rec.ProjectNo</td>
+                                <td>@rec.ProjectStartDate</td>
+                                <td>@rec.ProjectCloseDate</td>
+                                <td>@Html.ActionLink("select", "projectselect", new { projectno = rec.ProjectNo }, new { @class = "btn btn-success" }) </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model.ProjectList.ToPagedList(ViewData["pageNumber"] == null ? 1 : (int)ViewData["pageNumber"], ViewData["pageSize"] == null ? 1 : (int)ViewData["pageSize"]), page => Url.Action("projectsearch", new { page = page }))
+        </div>
+                            }
+                        }

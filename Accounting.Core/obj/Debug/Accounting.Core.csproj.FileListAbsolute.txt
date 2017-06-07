@@ -1,0 +1,10 @@
+D:\iit db\25-1-2017\Accounting.Core\bin\Debug\Accounting.Core.dll
+D:\iit db\25-1-2017\Accounting.Core\bin\Debug\Accounting.Core.pdb
+D:\iit db\25-1-2017\Accounting.Core\obj\Debug\Accounting.Core.csprojResolveAssemblyReference.cache
+D:\iit db\25-1-2017\Accounting.Core\obj\Debug\Accounting.Core.dll
+D:\iit db\25-1-2017\Accounting.Core\obj\Debug\Accounting.Core.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\bin\Debug\Accounting.Core.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\bin\Debug\Accounting.Core.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\obj\Debug\Accounting.Core.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\obj\Debug\Accounting.Core.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\obj\Debug\Accounting.Core.pdb

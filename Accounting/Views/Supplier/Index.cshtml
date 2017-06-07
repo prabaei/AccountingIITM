@@ -1,0 +1,131 @@
+﻿@model Accounting.data.Database.Supplier
+@{
+    ViewBag.Title = "SupplierMaster";
+}
+
+@using (Html.BeginForm("Index", "Supplier", FormMethod.Post, new { }))
+{
+
+    @Html.HiddenFor(m => m.Id);
+<div class="panel panel-default">
+    <div class="panel-heading">Supplier Registraion</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-group  col-sm-12 col-md-6 col-lg-6">
+                @Html.Label("Name")
+                
+                    @*<input id="idInstid" oninput="enterinst()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                    @Html.TextBoxFor(m => m.Name, new { id = "", placeholder = "Name", style = "max-width:280px", @class = "form-control" })
+                    @*<span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i id="instid" class="glyphicon glyphicon-search"></i><img id="idimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+               
+                @Html.ValidationMessageFor(m=>m.Name, "", new { style = "color:red" })
+            </div>
+            <div class="form-group  col-sm-12 col-md-6 col-lg-6">
+                @Html.Label("Address Line 1")
+               
+                    @*<input id="projectNO" oninput="enterProjectNO()" type="text" class="form-control" value="" placeholder="projectNO" />*@
+                    @Html.TextBoxFor(m => m.Address1, new { id = "", type = "text", @class = "form-control", placeholder = "Address Line 1" })
+                    @*<span class="input-group-addon" aria-hidden="true"><i id="iprojectNO" class="glyphicon glyphicon-search"></i><img id="projimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+                
+                @Html.ValidationMessageFor(m => m.Address1, "", new { style = "color:red" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group  col-sm-12 col-md-6 col-lg-6">
+                @Html.Label("Address Line 2")
+                
+                    @*<input id="idInstid" oninput="enterinst()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                    @Html.TextBoxFor(m => m.Address2, new { id = "", placeholder = "Address Line 2", style = "max-width:280px", @class = "form-control" })
+                    @*<span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i id="instid" class="glyphicon glyphicon-search"></i><img id="idimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+                
+                <label id="erAddressL2" style="color:red"></label>
+            </div>
+            <div class="form-group  col-sm-12 col-md-6 col-lg-6">
+                @Html.Label("Address Line 3")
+                
+                    @*<input id="projectNO" oninput="enterProjectNO()" type="text" class="form-control" value="" placeholder="projectNO" />*@
+                    @Html.TextBoxFor(m => m.Address3, new { id = "", type = "text", @class = "form-control", placeholder = "Address Line 3" })
+                    @*<span class="input-group-addon" aria-hidden="true"><i id="iprojectNO" class="glyphicon glyphicon-search"></i><img id="projimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+                
+                <label id="erAddressL3" style="color:red"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group  col-sm-12 col-md-6 col-lg-6">
+                @Html.Label("Country")
+
+                @*<input id="idInstid" oninput="enterinst()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                @Html.DropDownListFor(m => m.Country,Model.CountryList==null?new List<SelectListItem>() { new SelectListItem() { Text="",Value=""} } :Model.CountryList, new { id = "", placeholder = "Address Line 2", style = "max-width:280px", @class = "form-control" })
+                @*<span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i id="instid" class="glyphicon glyphicon-search"></i><img id="idimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+
+                <label id="erAddressL2" style="color:red"></label>
+            </div>
+            <div class="form-group  col-sm-12 col-md-6 col-lg-6">
+                @Html.Label("State")
+
+                @*<input id="projectNO" oninput="enterProjectNO()" type="text" class="form-control" value="" placeholder="projectNO" />*@
+                @Html.TextBoxFor(m => m.State, new { id = "", type = "text", @class = "form-control", placeholder = "State" })
+                @*<span class="input-group-addon" aria-hidden="true"><i id="iprojectNO" class="glyphicon glyphicon-search"></i><img id="projimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+                @Html.ValidationMessageFor(m => m.State,"", new { style = "color:red" })
+                <label id="erAddressL3" style="color:red"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group  col-sm-12 col-md-6 col-lg-6">
+                @Html.Label("District")
+
+                @*<input id="idInstid" oninput="enterinst()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                @Html.TextBoxFor(m => m.District, new { id = "", type = "text", @class = "form-control", placeholder = "District" })
+
+                
+                @*<span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i id="instid" class="glyphicon glyphicon-search"></i><img id="idimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+
+                <label id="erAddressL2" style="color:red"></label>
+            </div>
+            <div class="form-group  col-sm-12 col-md-6 col-lg-6">
+                @Html.Label("PIN")
+
+                @*<input id="projectNO" oninput="enterProjectNO()" type="text" class="form-control" value="" placeholder="projectNO" />*@
+                @Html.TextBoxFor(m => m.PIN, new { id = "", type = "text", @class = "form-control", placeholder = "PIN" })
+                @*<span class="input-group-addon" aria-hidden="true"><i id="iprojectNO" class="glyphicon glyphicon-search"></i><img id="projimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+
+                <label id="erAddressL3" style="color:red"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group  col-sm-12 col-md-3 col-lg-3">
+                @Html.Label("PAN")
+
+                @*<input id="idInstid" oninput="enterinst()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                @Html.TextBoxFor(m => m.Pan, new { id = "", type = "text", @class = "form-control", placeholder = "PAN" })
+
+
+                @*<span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i id="instid" class="glyphicon glyphicon-search"></i><img id="idimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+
+                <label id="erAddressL2" style="color:red"></label>
+            </div>
+            <div class="form-group  col-sm-12 col-md-3 col-lg-3">
+                @Html.Label("TIN")
+
+                @*<input id="projectNO" oninput="enterProjectNO()" type="text" class="form-control" value="" placeholder="projectNO" />*@
+                @Html.TextBoxFor(m => m.Tin, new { id = "", type = "text", @class = "form-control", placeholder = "TIN" })
+                @*<span class="input-group-addon" aria-hidden="true"><i id="iprojectNO" class="glyphicon glyphicon-search"></i><img id="projimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+
+                <label id="erAddressL3" style="color:red"></label>
+            </div>
+            <div class="form-group  col-sm-12 col-md-3 col-lg-3">
+                @Html.Label("TAN")
+
+                @*<input id="projectNO" oninput="enterProjectNO()" type="text" class="form-control" value="" placeholder="projectNO" />*@
+                @Html.TextBoxFor(m => m.Tan, new { id = "", type = "text", @class = "form-control", placeholder = "TAN" })
+                @*<span class="input-group-addon" aria-hidden="true"><i id="iprojectNO" class="glyphicon glyphicon-search"></i><img id="projimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>*@
+
+                <label id="erAddressL3" style="color:red"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="text-align:center">
+    <button class="btn btn-default">Submit</button>
+</div>
+}

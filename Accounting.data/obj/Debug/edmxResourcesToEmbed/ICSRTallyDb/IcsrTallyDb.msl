@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ICSRDBTALLYModelStoreContainer" CdmEntityContainer="ICSRDBTALLYEntities">
+    <EntitySetMapping Name="Ledgers">
+      <EntityTypeMapping TypeName="ICSRDBTALLYModel.Ledger">
+        <MappingFragment StoreEntitySet="Ledgers">
+          <ScalarProperty Name="Autoid" ColumnName="Autoid" />
+          <ScalarProperty Name="TallyMasterid" ColumnName="TallyMasterid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="CrDr" ColumnName="CrDr" />
+          <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
+          <ScalarProperty Name="void" ColumnName="void" />
+          <ScalarProperty Name="LedDate" ColumnName="LedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vouchers">
+      <EntityTypeMapping TypeName="ICSRDBTALLYModel.Voucher">
+        <MappingFragment StoreEntitySet="Vouchers">
+          <ScalarProperty Name="Autoid" ColumnName="Autoid" />
+          <ScalarProperty Name="TallyMasterid" ColumnName="TallyMasterid" />
+          <ScalarProperty Name="Voucherid" ColumnName="Voucherid" />
+          <ScalarProperty Name="VoucherNumber" ColumnName="VoucherNumber" />
+          <ScalarProperty Name="VoucherDate" ColumnName="VoucherDate" />
+          <ScalarProperty Name="VoucherType" ColumnName="VoucherType" />
+          <ScalarProperty Name="LedgerName" ColumnName="LedgerName" />
+          <ScalarProperty Name="BillName" ColumnName="BillName" />
+          <ScalarProperty Name="CrDr" ColumnName="CrDr" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Narration" ColumnName="Narration" />
+          <ScalarProperty Name="InstrumentNumber" ColumnName="InstrumentNumber" />
+          <ScalarProperty Name="InstrumentDate" ColumnName="InstrumentDate" />
+          <ScalarProperty Name="InstrumentType" ColumnName="InstrumentType" />
+          <ScalarProperty Name="InstrumentBank" ColumnName="InstrumentBank" />
+          <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Void" ColumnName="Void" />
+          <ScalarProperty Name="voiddate" ColumnName="voiddate" />
+          <ScalarProperty Name="voidUser" ColumnName="voidUser" />
+          <ScalarProperty Name="projectnumber" ColumnName="projectnumber" />
+          <ScalarProperty Name="oppledgername" ColumnName="oppledgername" />
+          <ScalarProperty Name="CostCentreName" ColumnName="CostCentreName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

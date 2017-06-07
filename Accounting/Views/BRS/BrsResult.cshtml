@@ -1,0 +1,572 @@
+﻿@using Accounting.data.Database
+@using System.Globalization;
+@model Accounting.Models.BRS.brsMdl
+
+@{
+    ViewBag.Title = "BrsResult";
+    var TransArray = Model.brasBankTran.ToArray();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    #sortGrid tr.selected {
+        outline: thick solid black;
+    }
+
+    .BankState {
+        width: 200px;
+        height: 50px;
+        background: #ddd;
+        border: 1px solid #000000;
+        -moz-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+        -webkit-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+        box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
+    }
+</style>
+
+
+
+
+@using (Html.BeginForm("submitBrs", "BRS", FormMethod.Post, new { id = "submitres" }))
+{
+    <input type="hidden" id="brsJson" name="brsJson" />
+    <input type="hidden" id="stdt" name="stdt" value="@TempData["startDate"]" />
+    <input type="hidden" id="endt" name="endt" value="@TempData["endDate"]" />
+    <input type="hidden" id="accountNo" value="@TempData["accoutno"]" />
+    <input type="hidden" id="clbl" value="@TempData["CloseBal"]" />
+
+
+}
+<button onclick="computeBrs()" class="btn btn-info">compute</button>
+<button type="button" onclick="submitBrs()" class="btn btn-success">submit</button>
+
+
+@if (Model != null)
+{
+    <table class="table table-hover">
+        <tr>
+            <td>Date</td>
+            <td>Particulars</td>
+            <td>Vch Type</td>
+            <td>Vch No</td>
+            <td>REF/CHQ NO</td>
+            <td>Debit</td>
+            <td>Credit</td>
+            <td>WITH DRAWALS</td>
+            <td>DEPOSITS</td>
+            <td>Balance</td>
+            <td>Add</td>
+            <td hidden>TransactionNO</td>
+            <td hidden>Check</td>
+            <td hidden>Particular</td>
+            <td hidden>cheqref</td>
+            <td hidden>voucherT</td>
+        </tr>
+        <tbody id="sortGrid">
+
+            @for (int index = 0; index < TransArray.Length; index++)
+                {
+
+                    if (TransArray[index] != null)
+                    {
+                    <tr style="" class="@getClass(TransArray[index].imported)" id=@genid(index)>
+                        <td>@getFormatDate(TransArray[index].bankDate)</td>
+                        @if (TransArray[index].imported)
+                        {
+                            <td>@TransArray[index].desc</td>
+                        }
+                        else
+                        {
+                            <td>@TransArray[index].bankPart</td>
+                        }
+                        <td>@TransArray[index].voucherTypeStr</td>
+                        <td>@TransArray[index].voucherNo</td>
+                        <td>@TransArray[index].ChequeNO</td>
+                        @if (TransArray[index].voucherType != null)
+                        {
+                            if (TransArray[index].credit)
+                            {
+                                <td>@TransArray[index].Amount</td>
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td></td>
+                                <td><input id="@getNumBoxid(index)" type="number" value="@TransArray[index].Amount" style="width:100px" /></td>
+                            }
+                        }
+                        else
+                        {
+                            <td></td>
+                            <td></td>
+                        }
+                        <td>@decimalspace(TransArray[index].WITHDRAWALS)</td>
+                        <td>@decimalspace(TransArray[index].DEPOSITS)</td>
+                        <td>@decimalspace(TransArray[index].currentBal)</td>
+                        @if (TransArray[index].imported)
+                        {
+                            if (TransArray[index].DEPOSITS != TransArray[index].currentBal)
+                            {
+                                List<SelectListItem> dropdd;
+                                if (!TransArray[index].credit)
+                                {
+
+                                    dropdd = Model.VoucherType.Where(m => m.Brs == true && m.depositdd).Select(m => new SelectListItem() { Text = m.VoucherTypeName, Value = m.TypeId.ToString() }).ToList();
+                                    <td>
+                                        @Html.DropDownList("ClibType" + index, dropdd
+                            , "-Select-") &nbsp;
+                                        @Html.TextArea("Narr",new { placeholder="Narration",id="nar"+index})<br/>
+                                        <button onclick="createTd('@getFormatDate(TransArray[index].bankDate)','@TransArray[index].desc','@TransArray[index].ChequeNO','@TransArray[index].WITHDRAWALS','@TransArray[index].DEPOSITS','@TransArray[index].currentBal','@TransArray[index].BankAccountNO','@index')">Add</button>
+                                    </td>
+                                }
+                                else
+                                {
+                                    dropdd = Model.VoucherType.Where(m => m.Brs == true && m.wddd == true).Select(m => new SelectListItem() { Text = m.VoucherTypeName, Value = m.TypeId.ToString() }).ToList();
+                                    <td>
+                                        <input id="@genchid(index)" type="checkbox" />claim not submitted<br />
+                                        @Html.DropDownList("ClibType" + index, dropdd
+                            , "-Select-")&nbsp;
+                                        @Html.TextArea("Narr", new { placeholder = "Narration", id = "nar" + index })<br />
+                                        <button onclick="createTd('@getFormatDate(TransArray[index].bankDate)','@TransArray[index].desc','@TransArray[index].ChequeNO','@TransArray[index].WITHDRAWALS','@TransArray[index].DEPOSITS','@TransArray[index].currentBal','@TransArray[index].BankAccountNO','@index')">Add</button>
+                                        
+                                    </td>
+                                }
+                                @*<td><a href="@Url.Action("ClimbNotSubmitted", "BRS",new { area="",Date= getFormatDate(TransArray[index].bankDate),particular=TransArray[index].desc,refchq=TransArray[index].ChequeNO,widthdraw=TransArray[index].WITHDRAWALS,deposit=TransArray[index].DEPOSITS,bal=TransArray[index].currentBal,accno=TransArray[index].BankAccountNO })" target="_blank">Link Text</a></td>*@
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                        }
+                        else if (TransArray[index].brsEntry)
+                        {
+                            <td>@*<button onclick="hideTr('@index')">Hide</button>*@<button class="btn btn-warning" onclick="removeCNS('@TransArray[index].TransNO','@index')">Delete</button></td>
+                        }
+                        else if (TransArray[index].voucherType == 2)
+                        {
+                            <td>
+                                @Html.DropDownList("cqTy" + index, Model.VoucherType.Where(m => m.cq == true).Select(m => new SelectListItem() { Text = m.VoucherTypeName, Value = m.TypeId.ToString() }).ToList()
+                            , "-Select-", new { @id = "cqTy" + index })
+                                <button onclick="cqfun('@TransArray[index].TransNO','@index')">OK</button>
+                                <button class="btn btn-warning" onclick="removeCNS('@TransArray[index].TransNO','@index')">Delete</button>
+                            </td>
+                        }
+                        else if (TransArray[index].voucherType == 18)
+                        {
+                            <td><button onclick="hideTr('@index')"> Hide </button><button onclick="stalechq('@TransArray[index].TransNO','@index')">Stale</button></td>
+                        }
+                        else
+                        {
+                            <td><button onclick="hideTr('@index')"> Hide </button><button onclick="removeCNS('@TransArray[index].TransNO','@index')">Delete</button></td>
+                        }
+
+                        <td hidden>@TransArray[index].TransNO</td>
+
+                        @if (!TransArray[index].imported)
+                        {
+                            <td hidden>@Html.CheckBox("chbx" + index.ToString(), new { onchange = "changed(this)" })</td>
+                        }
+                        else
+                        {
+                            <td hidden></td>
+                        }
+                        <td hidden>Particular</td>
+                        <td hidden>cheqref</td>
+                        <td hidden>@TransArray[index].voucherType</td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+
+
+
+}
+
+
+<div id="dialog" title="Brs Result">
+    <p id="msgcontent" style="color:red"></p>
+    <label>Opening Balance </label><input type="number" id="openingbal" value="@TempData["openBal"]" readonly />@* this is from statement *@
+    <br />
+    <label>Opening Balance(Bank) </label><input type="number" id="accOpen" value="@TempData["AccountOpen"]" readonly />@* this is from db *@
+    <br />
+    <label>Closing Balance </label> <input type="text" id="CalCloBal" value="" readonly />
+    <br />
+    <label>Closing Balance(Bank) </label><input type="number" id="closingBal" value="@TempData["CloseBal"]" readonly />@* this is from statement *@
+</div>
+<script>
+
+    var JsonArr = [];
+    function Jsondata() {
+        return {
+            "Date": "",
+            "Particulars": "",
+            "VchType": "",
+            "VchNo": "",
+            "REFCHQNO": "",
+            "Debit": "",
+            "Credit": "",
+            "WITHDRAWALS": "",
+            "DEPOSITS": "",
+            "Balance": "",
+            "TransactionNO": "",
+            "OrderId": ""
+        };
+    }
+
+
+    function submitBrs() {
+        JsonArr = new Array();
+        var orid = 0;
+        $('#sortGrid tr.FromDb').each(function () {
+            var elem = $(this);
+            var Tempjson = Jsondata();
+            elem.find('td').each(function (ind, ele) {
+                if (ind == 0) {
+                    Tempjson.Date = ele.innerText;
+                }
+                //if (ind == 1) {
+                //    Tempjson.OrderId = ind;
+                //}
+                if (ind == 9) {
+                    Tempjson.Balance = ele.innerText;
+                }
+                if (ind == 11) {
+                    Tempjson.TransactionNO = ele.innerText;
+                }
+                if (ind == 13) {
+                    Tempjson.Particulars = ele.innerText;
+                }
+                if (ind == 14) {
+                    Tempjson.Particulars = Tempjson.Particulars + ' ' + ele.innerText;
+                }
+                if (ind == 15) {
+                    Tempjson.VchType = ele.innerText;
+                }
+
+            });
+            Tempjson.OrderId = orid;
+            JsonArr.push(Tempjson);
+            orid = orid + 1;
+        });
+        var brsSubmit = JSON.stringify(JsonArr);
+        //if ($('#CalCloBal').val() == Number($('#closingBal').val())) {
+            $('#brsJson').val(brsSubmit);
+            //alert("equal");
+            $('#submitres').submit();
+        //} else {
+        //    $("#msgcontent").html('Closing Balance not same')
+        //    $('#dialog').dialog('open');
+        //}
+
+    }
+
+ 
+
+    function stalechq(tran,ind) {
+        $.ajax({
+            url: "@Url.Action("staleChq", "BRS", new { area = "" })",
+            type: "POST",
+        dataType: "json",
+        data: { transno: tran },
+        success: function (data) {
+            if (data.job == 'done') {
+                $('#tr' + ind).remove();
+            }
+        }
+    });
+    }
+    function hideTr(index) {
+        $("#tr" + index).addClass("thide");
+        $('.thide').remove();
+    }
+    function cqfun(transno, ind) {
+        $.ajax({
+            url: "@Url.Action("ChangeType", "BRS", new { area = "" })",
+            type: "POST",
+            dataType: "json",
+            data: { transno: transno, voucherType: Number($('#cqTy' + ind).val()) },
+            success: function (data) {
+                if (data.job == 'done') {
+                    $('#tr' + ind).remove();
+                }
+            }
+        });
+    }
+    function removeCNS(transno, ind) {
+        console.log(transno);
+        console.log(ind);
+        $.ajax({
+            url: "@Url.Action("removeTrans", "BRS", new { area = "" })",
+            type: "POST",
+            dataType: "json",
+            data: { transno: transno },
+            success: function (data) {
+                if (data.job == 'done') {
+                    $('#tr' + ind).remove();
+                }
+            }
+        });
+        //$('#tr' + ind).remove();
+    };
+    //function allcheck(dd) {
+    //    if ($(dd).is(":checked")) {
+    //        $('input:checkbox').not(this).prop('checked', true);
+    //    } else {
+    //        $('input:checkbox').not(this).prop('checked', false);
+    //    }
+    //}
+    function createTd(Date, particular, refchq, widthdraw, deposit, bal, accno, ind) {
+        var cltt = Number($('#ClibType' + ind).val());
+        console.log($('#cns' + ind).prop("checked"));
+        //console.log(cltt);
+        if (cltt > 0) {
+            //alert('climNotSubmitted');
+            // return;
+        }
+
+        else {
+            alert('please select an option');
+            return;
+        }
+        $.ajax({
+            url: "@Url.Action("ClimbNotSubmitted", "BRS", new { area = "" })",
+            type: "POST",
+            dataType: "json",
+            data: { Date: Date, particular: particular, refchq: refchq, widthdraw: widthdraw, deposit: deposit, bal: bal, accno: accno, type: $('#ClibType' + ind).val(), cns: $('#cns' + ind).prop("checked"),narr:$("#nar"+ind).val() },
+            success: function (data) {
+                var rowCount = $('#sortGrid tr').length;
+                console.log(data);
+                rowCount = rowCount + 1;
+                //alert(data.transno);
+                var climbNotsub;
+                var checkbox = '<input id="chbx' + rowCount + '" name="chbx' + rowCount + '" onchange="changed(this)" type="checkbox" value="false">';
+                if (data.debiten == 'False') {
+                    climbNotsub = '<tr class="FromDb" id="tr' + rowCount + '" "><td>' + data.Bankdate + '</td><td>' + data.particular + '</td><td></td><td></td><td>' + data.refchq + '</td><td></td><td><input id="cridTxt' + rowCount + '" type="number" value="' + data.amt + '" style="width:100px"/></td><td></td><td></td><td></td><td><button onclick="hideTr(\'' + rowCount + '\')">Hide</button><button onclick="removeCNS(\'' + String(data.transno) + '\',\'' + String(rowCount) + '\')">Remove</button> </td>' + '<td hidden>' + data.transno + '</td><td hidden>' + checkbox + '</td></tr>'
+
+                } else {
+                    climbNotsub = '<tr class="FromDb" id="tr' + rowCount + '" "><td>' + data.Bankdate + '</td><td>' + data.particular + '</td><td></td><td></td><td>' + data.refchq + '</td><td>' + data.amt + '</td><td></td><td></td><td></td><td></td><td><button onclick="hideTr(\'' + rowCount + '\')">Hide</button><button onclick="removeCNS(\'' + String(data.transno) + '\',\'' + String(rowCount) + '\')">Remove</button> </td>' + '<td hidden>' + data.transno + '</td><td hidden>' + checkbox + '</td></tr>'
+                }
+                $("#tr" + ind).after(climbNotsub);
+            }
+        });
+    }
+
+    function computeBrs() {
+        var rowData = [];
+        var child = 0;
+        var curind = '';
+        $('#sortGrid tr').each(function () {
+            var htmlEle = $(this);
+            curind = String(htmlEle[0].id.substr(2));
+
+            if (htmlEle.hasClass('BankState')) {
+                //console.log(htmlEle[0].id.substr(2));
+                //curind = String(htmlEle[0].id.substr(2));
+                child = 0;
+                var bal = rowData[9];
+
+                rowData = new Array();
+                htmlEle.find('td').each(function (ind, ele) {
+
+                    if (ind < 9) {
+                        rowData.push(ele.innerText);
+                    }
+                    if (ind == 9) {
+                        if (curind == '0') {
+                            rowData.push(Number(ele.innerText));
+                        } else {
+                            rowData.push(Number(bal));
+                        }
+                    }
+                    //switch (ind) {
+                    //    case 0:
+                    //        rowData.Date = ele.innerText;
+                    //        break;
+                    //    case 1:
+                    //        rowData.Particulars = ele.innerText;
+                    //        break;
+                    //    case 2:
+                    //        rowData.VchType = ele.innerText;
+                    //        break;
+                    //    case 3:
+                    //        rowData.VchNo = ele.innerText;
+                    //        break;
+                    //    case 4:
+                    //        rowData.REFCHQNO = ele.innerText;
+                    //        break;
+                    //    case 5:
+                    //        rowData.Debit = ele.innerText;
+                    //        break;
+                    //    case 6:
+                    //        rowData.Credit = ele.innerText;
+                    //        break;
+                    //    case 7:
+                    //        rowData.WITHDRAWALS = ele.innerText;
+                    //        break;
+                    //    case 8:
+                    //        rowData.DEPOSITS = ele.innerText;
+                    //        break;
+                    //    case 9:
+                    //        rowData.Balance = ele.innerText;
+                    //        break;
+                    //}
+                    //rowData.Date = ele.innerText;
+
+                });
+            }
+            if (htmlEle.hasClass('FromDb')) {
+
+                htmlEle.find('td').each(function (ind, ele) {
+                    if (ind < 1) {
+                        ele.innerText = rowData[ind];
+                    }
+                    if (ind == 13) {
+                        ele.innerText = rowData[1];
+                    }
+                    if (ind == 14) {
+                        ele.innerText = rowData[4];
+                    }
+                    if (ind == 5) {
+                        if (child == 0) {
+                            if (ele.innerText != "") {//if debit
+                                rowData[9] = Number(rowData[9]) + Number(ele.innerText);
+                            } else {
+                                rowData[9] = Number(rowData[9]) - Number($('#cridTxt' + curind).val());
+                                //$('#cridTxt' + curind).val();///this is credit
+                                //ele.innerText = rowData[ind];
+                            }
+                        } else {
+                            console.log(curind);
+                            if (ele.innerText != "") {//if debit
+                                rowData[9] = Number(rowData[9]) + Number(ele.innerText);
+                            } else {
+                                console.log($('#cridTxt' + curind).val());
+                                //$('#cridTxt' + ind).val();///this is credit
+                                rowData[9] = Number(rowData[9]) - Number($('#cridTxt' + curind).val());
+                            }
+                            console.log(rowData[9]);
+                        }
+                    }
+
+                    if (ind == 9) {
+                        ele.innerText = rowData[ind];
+                    }
+                });
+                child = child + 1;
+            }
+            //console.log(htmlEle);
+            //alert();
+        });
+
+        $('#CalCloBal').val(Number(rowData[9]));
+    }
+    $(function () {
+
+        //var rowData = Jsondata();
+
+
+        $('#sortGrid').sortable({
+            axis: "y",
+            distance: 10,
+            delay: 10,
+            opacity: 0.9,
+            cursor: 'move',
+            //items:'.sortIt',
+            update: function (event, ui) {
+                console.log(ui);
+            }
+        });
+
+        $("#dialog").dialog({
+            autoOpen: false,
+            buttons: [
+                {
+                    text: "Close",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            ],
+            closeOnEscape: false,
+            draggable: false,
+            modal: true,
+        });
+        $("tbody tr").mousedown(function () {
+
+            $(this).addClass('selected').siblings().removeClass("selected");
+        });
+        if ($('#openingbal').val() != $('#accOpen').val()) {
+            $("#msgcontent").html('opening Balance not same')
+            //$('#dialog').dialog('open');
+        }
+
+    });
+</script>
+
+
+@functions
+{
+    public string getFormatDate(DateTime? dd)
+    {
+        DateTime dt = new DateTime();
+        if (dd != null)
+        {
+            dt = Convert.ToDateTime(dd);
+
+        }
+        return dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+    }
+    public string genchid(int id)
+    {
+        return "cns" + id;
+    }
+    public string genid(int id)
+    {
+        return "tr" + id.ToString();
+    }
+    public string getClass(bool t)
+    {
+        if (t)
+        {
+            return "BankState";
+        }
+        else
+        {
+            return "FromDb";
+        }
+    }
+    public string getTrStyle(TransModel sam)
+    {
+        if (sam.imported)
+            //return "burlywood";
+
+            return "darkkhaki";
+        else if (sam.voucherType == 10 || sam.CNS)
+            return "navajowhite";
+        else
+            return "";
+    }
+    public string getNumBoxid(int id)
+    {
+        return "cridTxt" + Convert.ToString(id);
+    }
+    public string decimalspace(Decimal? amt)
+    {
+        if (amt == null)
+        {
+            return " ";
+        }
+        else if (amt == 0)
+        {
+            return " ";
+        }
+        else
+        {
+            return Convert.ToString(amt);
+        }
+    }
+
+}

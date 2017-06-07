@@ -1,0 +1,30 @@
+﻿@using GridMvc.Html
+@using Accounting.data.Database
+@model IEnumerable<ImprestMaster>
+@{
+    ViewBag.Title = "AccountGrid";
+}
+
+<h2>Account Details</h2>
+
+<div style="text-align:right">
+   
+    <a class="btn btn-success" href="@Url.Action("ExportToExcel","ImprestMstr",new {area="" })">Export to Excel</a>
+</div>
+
+@Html.Grid(Model).Columns(columns =>
+{
+
+columns.Add(m => m.InstituteId).Titled("Institute ID").SetWidth(100);
+columns.Add(foo => foo.CoordinatorName).Titled("COORDINATOR NAME").SetWidth(200);
+columns.Add(foo => foo.BankAccountNo).Sortable(true);
+columns.Add(m => m.CUSTID).Titled("Customer ID");
+columns.Add(foo => foo.CardNO).Titled("Card No");
+columns.Add(foo => foo.Email).Titled("Email");
+columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+    .RenderValueAs(d =>
+        @<b>
+            @Html.ActionLink("Edit", "Edit", "ImprestMstr", new { area = "", Accountno = d.BankAccountNo }, null)
+        </b>);
+}).WithPaging(15).Sortable().Filterable().WithMultipleFilters()
+

@@ -1,0 +1,27 @@
+﻿@using GridMvc.Html
+@model List<Accounting.Models.Supplier.SupplierMdl>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+@Html.Grid(Model).Columns(columns =>
+{
+columns.Add(m => m.Name).Titled("Name");
+columns.Add(d => d.Address1).Titled("Address1");
+columns.Add(d => d.Address2).Titled("Address2").Sortable(true);
+columns.Add(foo => foo.Address3).Titled("Address3");
+columns.Add(foo => foo.State).Titled("State").Sortable(false).Filterable(false);
+columns.Add(foo => foo.District).Titled("District").Sortable(false).Filterable(false);
+columns.Add(foo => foo.countryStr).Titled("Country").Sortable(false).Filterable(false);
+columns.Add(m => m.PIN).Titled("PIN").Sortable(false).Filterable(false);
+columns.Add(m => m.Pan).Titled("Pan").Sortable(false).Filterable(false);
+columns.Add(m => m.Tan).Titled("Tan").Sortable(false).Filterable(false);
+columns.Add().Titled("Action").Encoded(false).Sanitized(false).SetWidth(30)
+.RenderValueAs(d =>
+    @<b>
+        @Html.ActionLink("Edit", "Edit", "Supplier", new { area = "", id = d.Id }, null)
+        @Html.ActionLink("Delete", "Delete", "Supplier", new { area = "", id = d.Id }, null)
+    </b>);
+}).WithPaging(15)

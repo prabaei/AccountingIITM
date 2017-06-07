@@ -1,0 +1,46 @@
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\Accounting.Architecture.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\Accounting.Architecture.pdb
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\Accounting.data.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.Helpers.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.Mvc.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.Razor.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.WebPages.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.WebPages.Razor.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\EntityFramework.dll
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\Accounting.data.pdb
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.Helpers.xml
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.Mvc.xml
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.Razor.xml
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.WebPages.xml
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\System.Web.WebPages.Razor.xml
+D:\iit db\25-1-2017\Accounting.Architecture\bin\Debug\EntityFramework.xml
+D:\iit db\25-1-2017\Accounting.Architecture\obj\Debug\Accounting.Architecture.csprojResolveAssemblyReference.cache
+D:\iit db\25-1-2017\Accounting.Architecture\obj\Debug\Accounting.Architecture.dll
+D:\iit db\25-1-2017\Accounting.Architecture\obj\Debug\Accounting.Architecture.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\Accounting.Architecture.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\Accounting.Architecture.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\Accounting.data.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.Helpers.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.Mvc.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.Razor.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.WebPages.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\EPPlus.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\Accounting.data.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.Helpers.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.Mvc.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.Razor.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.WebPages.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\EPPlus.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\obj\Debug\Accounting.Architecture.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\obj\Debug\Accounting.Architecture.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Architecture\obj\Debug\Accounting.Architecture.pdb

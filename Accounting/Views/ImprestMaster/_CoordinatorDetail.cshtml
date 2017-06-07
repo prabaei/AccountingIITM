@@ -1,0 +1,35 @@
+﻿@model coordmodel
+<h3>Coordinator Details</h3>
+<hr />
+@*<input oninput="" style="padding-top:2px"/>*@
+@using (Html.BeginForm("Serarch", "ImprestMaster", FormMethod.Post, new { }))
+{
+    <div class="row">
+        <div>
+            @Html.AccountLabelFor(m => m.cordDetails.IIRNO, new { @class = "col-md-3" })
+            @Html.AccountTextBoxFor(m => m.cordDetails.IIRNO, new { @name = "IIRNO", @id = "IIRNO", @class = "col-md-1" })
+            @Html.ValidationMessageFor(m => m.cordDetails.IIRNO, null, new { @style = "color:red", @class = "col-md-1" })
+            <button type="submit" class="col-md-1 btn btn-success" style="">search</button>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.AccountLabelFor(m => m.cordDetails.Department, new { @class = "col-md-3" })
+            @Html.AccountTextBoxDisabledFor(m => m.cordDetails.Department, new
+       { @*@oninput = "search()"*@ @id = "Department",
+           @class = "col-md-1"
+       })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.AccountLabelFor(m => m.cordDetails.Name, new { @class = "col-md-3" })
+            @Html.AccountTextBoxDisabledFor(m => m.cordDetails.Name, new
+       { @*@oninput = "search()"*@ @id = "Name",
+           @class = "col-md-1"
+       })
+        </div>
+    </div>
+
+}

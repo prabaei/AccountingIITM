@@ -1,0 +1,91 @@
+﻿@using Accounting.Models
+@using PagedList.Mvc;
+@model PagedList.IPagedList<ImprestCordinatorDetails>
+
+@if (Model != null)
+{
+
+    if (Model.Count > 0)
+    {
+        <div style="display:@ViewData["coordlist"]">
+
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>IIRNO</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+
+                        foreach (var rec in Model)
+                        {
+                            <tr>
+                                <td>@rec.IIRNO</td>
+                                <td>@rec.Name</td>
+                                <td>@rec.Department</td>
+                                <td>@Html.ActionLink("select", "Select", new { IIRNO = rec.IIRNO }, null) </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+
+
+            @Html.PagedListPager(Model, page => Url.Action("Serarch", new { page = page }))
+        </div>
+                            }
+
+
+
+
+                        }
+@functions
+{
+//public string generateId(string name, int id)
+//{
+//    return name + Convert.ToString(id);
+//}
+
+}
+<script>
+
+
+    @*var selectproject = {
+        selecturl: '@Url.Action("Select", "ImprestMaster")'
+    }*@
+
+    //function select(rowid)
+    //{
+    //    var coordname = document.getElementById("coorname" + String(rowid)).innerHTML;
+    //    var projno = document.getElementById("projno" + String(rowid)).innerHTML;
+    //    var pjstdt = document.getElementById("pjstdt" + String(rowid)).innerHTML;
+    //    var pjcldt = document.getElementById("pjcldt" + String(rowid)).innerHTML;
+
+    //    //var idsel = "#coorname" + String(rowid);
+    //    //alert($(idsel).val());
+    //    $.ajax({
+    //        type: "POST",
+    //        url: selectproject.selecturl,
+    //        data: { APRLNO: projno, coordinatorname: coordname, projectstartdate: pjstdt, projectenddate: pjcldt },
+    //        //contentType: "application/json; charset=utf-8",
+    //        // dataType: "json",
+
+    //        success: function (result) {
+    //            alert(result);
+    //            $("#renderbody").html(result);
+    //        },
+    //       // success: handleResponse
+
+
+    //    });
+
+    //}
+
+
+</script>

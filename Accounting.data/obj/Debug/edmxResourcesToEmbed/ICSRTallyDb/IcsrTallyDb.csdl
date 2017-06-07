@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ICSRDBTALLYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ledger">
+    <Key>
+      <PropertyRef Name="Autoid" />
+    </Key>
+    <Property Name="Autoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TallyMasterid" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Parent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CrDr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="OpeningBalance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="void" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Voucher">
+    <Key>
+      <PropertyRef Name="Autoid" />
+    </Key>
+    <Property Name="Autoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TallyMasterid" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Voucherid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VoucherNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VoucherDate" Type="DateTime" Precision="3" />
+    <Property Name="VoucherType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LedgerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BillName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CrDr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Narration" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InstrumentNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InstrumentDate" Type="DateTime" Precision="3" />
+    <Property Name="InstrumentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InstrumentBank" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Adddate" Type="DateTime" Precision="3" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Void" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="voiddate" Type="DateTime" Precision="3" />
+    <Property Name="voidUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="projectnumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="oppledgername" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CostCentreName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="ICSRDBTALLYEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ledgers" EntityType="Self.Ledger" />
+    <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
+  </EntityContainer>
+</Schema>

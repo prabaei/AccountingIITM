@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ICSRDBTALLYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ICSRDBTALLY.dbo.Ledgers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Ledgers">
+    <Key>
+      <PropertyRef Name="Autoid" />
+    </Key>
+    <Property Name="Autoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TallyMasterid" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Parent" Type="varchar" MaxLength="100" />
+    <Property Name="CrDr" Type="varchar" MaxLength="10" />
+    <Property Name="OpeningBalance" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="void" Type="varchar" MaxLength="50" />
+    <Property Name="LedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ICSRDBTALLY.dbo.Vouchers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Vouchers">
+    <Key>
+      <PropertyRef Name="Autoid" />
+    </Key>
+    <Property Name="Autoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TallyMasterid" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Voucherid" Type="varchar" MaxLength="100" />
+    <Property Name="VoucherNumber" Type="varchar" MaxLength="100" />
+    <Property Name="VoucherDate" Type="datetime" />
+    <Property Name="VoucherType" Type="varchar" MaxLength="100" />
+    <Property Name="LedgerName" Type="varchar" MaxLength="100" />
+    <Property Name="BillName" Type="varchar" MaxLength="100" />
+    <Property Name="CrDr" Type="varchar" MaxLength="100" />
+    <Property Name="Amount" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Narration" Type="varchar" MaxLength="100" />
+    <Property Name="InstrumentNumber" Type="varchar" MaxLength="100" />
+    <Property Name="InstrumentDate" Type="datetime" />
+    <Property Name="InstrumentType" Type="varchar" MaxLength="100" />
+    <Property Name="InstrumentBank" Type="varchar" MaxLength="100" />
+    <Property Name="Adddate" Type="datetime" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="Void" Type="varchar" MaxLength="50" />
+    <Property Name="voiddate" Type="datetime" />
+    <Property Name="voidUser" Type="varchar" MaxLength="100" />
+    <Property Name="projectnumber" Type="varchar" MaxLength="100" />
+    <Property Name="oppledgername" Type="varchar" MaxLength="100" />
+    <Property Name="CostCentreName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityContainer Name="ICSRDBTALLYModelStoreContainer">
+    <EntitySet Name="Ledgers" EntityType="Self.Ledgers" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Ledgers].[Autoid] AS [Autoid], 
+    [Ledgers].[TallyMasterid] AS [TallyMasterid], 
+    [Ledgers].[Name] AS [Name], 
+    [Ledgers].[Parent] AS [Parent], 
+    [Ledgers].[CrDr] AS [CrDr], 
+    [Ledgers].[OpeningBalance] AS [OpeningBalance], 
+    [Ledgers].[void] AS [void], 
+    [Ledgers].[LedDate] AS [LedDate]
+    FROM [dbo].[Ledgers] AS [Ledgers]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Vouchers" EntityType="Self.Vouchers" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Vouchers].[Autoid] AS [Autoid], 
+    [Vouchers].[TallyMasterid] AS [TallyMasterid], 
+    [Vouchers].[Voucherid] AS [Voucherid], 
+    [Vouchers].[VoucherNumber] AS [VoucherNumber], 
+    [Vouchers].[VoucherDate] AS [VoucherDate], 
+    [Vouchers].[VoucherType] AS [VoucherType], 
+    [Vouchers].[LedgerName] AS [LedgerName], 
+    [Vouchers].[BillName] AS [BillName], 
+    [Vouchers].[CrDr] AS [CrDr], 
+    [Vouchers].[Amount] AS [Amount], 
+    [Vouchers].[Narration] AS [Narration], 
+    [Vouchers].[InstrumentNumber] AS [InstrumentNumber], 
+    [Vouchers].[InstrumentDate] AS [InstrumentDate], 
+    [Vouchers].[InstrumentType] AS [InstrumentType], 
+    [Vouchers].[InstrumentBank] AS [InstrumentBank], 
+    [Vouchers].[Adddate] AS [Adddate], 
+    [Vouchers].[UserName] AS [UserName], 
+    [Vouchers].[Void] AS [Void], 
+    [Vouchers].[voiddate] AS [voiddate], 
+    [Vouchers].[voidUser] AS [voidUser], 
+    [Vouchers].[projectnumber] AS [projectnumber], 
+    [Vouchers].[oppledgername] AS [oppledgername], 
+    [Vouchers].[CostCentreName] AS [CostCentreName]
+    FROM [dbo].[Vouchers] AS [Vouchers]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

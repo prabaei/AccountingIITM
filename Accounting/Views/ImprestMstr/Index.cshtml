@@ -1,0 +1,468 @@
+﻿@using Accounting.data.Database
+@model ImprestMaster
+@{
+    ViewBag.Title = "Index";
+}
+
+@helper tablehead(string heading, string sec)
+{
+    <div style="text-align:center">
+        <a id="@sec" hidden></a>
+        <h4 style="font-style:italic">@heading</h4>
+        <hr style="color:blueviolet" />
+    </div>
+}
+@using (Html.BeginForm("ImportFromExcel", "ImprestMstr", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div style="text-align:right">
+        <button type="button" class="btn btn-primary" >Import Format</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ImportExcelFile">Import</button>
+    </div>
+    <!--Import model-->
+    <div id="ImportExcelFile" class="modal fade" role="dialog" style="z-index:999999">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Import Account Details</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="file" name="ImportAccountDetails" />(.xlsx Format)
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default">Ok</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}
+
+
+<link href="~/Content/awsomeFontFamily/css/font-awesome.min.css" rel="stylesheet" />
+@using (Html.BeginForm("AccountDetails", "ImprestMstr", FormMethod.Post, new { @id = "accdetails", enctype = "multipart/form-data" }))
+{
+    
+    <br />
+    <div class="panel panel-default ">
+        <div class="panel-heading">New Account</div>
+        <div class="panel-body">
+
+            @*<input name="InstituteId" type="hidden" id="hiddenINSTID" />*@
+            @Html.HiddenFor(m => m.InstituteId, new { name = "InstituteId", id = "hiddenINSTID" })
+            <div class="row">
+                <div class="form-group  col-sm-12 col-md-6 col-lg-4">
+                    @Html.LabelFor(m => m.InstituteId, new { @class = "" })
+
+                    <div class="input-group" style="max-width: 280px;">
+                        @*<input id="idInstid" oninput="instidinput()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                        @Html.TextBoxFor(m => m.InstituteId, new { id = "idInstid", oninput = "instidinput()", type = "text", placeholder = "Institute Id", @class = "form-control", style = "max-width:280px" })
+                        <span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i id="instid" class="glyphicon glyphicon-search"></i><img id="idimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>
+                    </div>
+                    <label id="erINSTID" style="color:red"></label>
+                </div>
+                <div class="form-group  col-sm-12 col-md-6 col-lg-4">
+                    @Html.Label("Coordinator Name")
+                    <div class="input-group" style="max-width: 280px;">
+                        @*<input id="idCoorName" name="CoordinatorName" type="text" readonly placeholder="Coordinator Name" class="form-control" style="max-width:280px" />*@
+                        @Html.TextBoxFor(m => m.CoordinatorName, new { id = "idCoorName", name = "CoordinatorName", type = "text", placeholder = "Coordinator Name", @class = "form-control", style = "max-width:280px" })
+                        <span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i class="glyphicon glyphicon-user" style="color:forestgreen"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-sm-12 col-md-6 col-lg-4">
+                    @Html.Label("Department")
+                    <div class="" style="max-width: 280px;">
+                        @*<input id="idDepartment" name="Department" readonly type="text" placeholder="Department" class="form-control" style="max-width:280px" />*@
+                        @Html.TextBoxFor(m => m.Department, new { id = "idDepartment", name = "Department", type = "text", placeholder = "Department", @class = "form-control", style = "max-width:280px" })
+                    </div>
+                </div>
+                <div class="form-group  col-sm-12 col-md-6 col-lg-4">
+                    @Html.Label("Designation")
+                    <div class="" style="max-width: 280px;">
+                        @*<input id="idDesig" name="Designation" readonly type="text" placeholder="Designation" class="form-control" style="max-width:280px" />*@
+                        @Html.TextBoxFor(m => m.Designation, new { id = "idDesig", name = "Designation", type = "text", placeholder = "Designation", @class = "form-control", style = "max-width:280px" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group  col-sm-12 col-md-4 col-lg-4">
+                    @Html.Label("Customer ID")
+                    <div class="" style="max-width: 280px;">
+                        @*<input id="idDepartment" name="Department" readonly type="text" placeholder="Department" class="form-control" style="max-width:280px" />*@
+                        @Html.TextBoxFor(m => m.CUSTID, new { id = "idDepartment", name = "Department", type = "text", placeholder = "Customer ID", @class = "form-control", style = "max-width:280px" })
+                    </div>
+                </div>
+                <div class="form-group  col-sm-12 col-md-4 col-lg-4">
+                    @Html.Label("Card No")
+                    <div class="" style="max-width: 280px;">
+                        @*<input id="idDesig" name="Designation" readonly type="text" placeholder="Designation" class="form-control" style="max-width:280px" />*@
+                        @Html.TextBoxFor(m => m.CardNO, new { id = "idDesig", name = "Designation", type = "text", placeholder = "Card No", @class = "form-control", style = "max-width:280px" })
+                    </div>
+                </div>
+                <div class="form-group  col-sm-12 col-md-4 col-lg-4">
+                    @Html.Label("Email Id")
+                    <div class="" style="max-width: 280px;">
+                        @*<input id="idDesig" name="Designation" readonly type="text" placeholder="Designation" class="form-control" style="max-width:280px" />*@
+                        @Html.TextBoxFor(m => m.Email, new { id = "", name = "", type = "text", placeholder = "Email", @class = "form-control", style = "max-width:280px" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-sm-12 col-md-6 col-lg-4">
+                    <label>AccountNo</label>
+                    @*<input id="AccountNoTextBox" name="BankAccountNo" oninput="AccountNoinput()" class="form-control" type="text">*@
+                    @Html.TextBoxFor(m => m.BankAccountNo, new { id = "AccountNoTextBox", name = "BankAccountNo", oninput = "AccountNoinput()", @class = "form-control", type = "text" })
+                    <label>Confirm AccountNo</label>
+                    <input id="CAccountNoTextBox" name="BankAccountNo" oninput="CAccountNoinput()" class="form-control" type="text">
+
+                    <label id="erAccountNoTextBox" style="color:red"></label>
+                </div>
+                <div class="form-group  col-sm-12 col-md-6 col-lg-4">
+                    @Html.Label("Amount")
+                    <div class="input-group" style="max-width: 280px;">
+                        <span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i class="fa fa-inr"></i></span>
+                        @*<input id="AmountText" name="Amount" oninput="Amountinput()" type="text" class="form-control" value="" placeholder="Amount" />*@
+                        @Html.TextBoxFor(m => m.Amount, new { id = "AmountText", name = "Amount", oninput = "Amountinput()", type = "text", @class = "form-control", value = "", placeholder = "Amount" })
+                    </div>
+                    @Html.Label("Confirm Amount")
+                    <div class="input-group" style="max-width: 280px;">
+                        <span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i class="fa fa-inr"></i></span>
+                        <input id="CAmountText" name="CAmount" oninput="CAmountinput()" type="text" class="form-control" value="" placeholder="Amount" />
+
+                    </div>
+
+                    <label id="erAmountText" style="color:red"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-sm-12 col-md-6 col-lg-4">
+                    <label>Limit</label>
+                    @*<input id="LimitText" oninput="LimitEnter()" name="Limit" class="form-control" type="text">*@
+                    @Html.TextBoxFor(m => m.Limit, new { id = "LimitText", oninput = "LimitEnter()", name = "Limit", @class = "form-control", type = "text" })
+                    <label id="errLimit" style="color:red"></label>
+                </div>
+            </div>
+            <div style="text-align:center">
+                <button class="btn btn-success" type="button" onclick="SubmitAccountDetails()">Confirm</button>
+                <button type="button" onclick="clearfun()" class="btn btn-primary">Clear</button>
+            </div>
+        </div>
+
+    </div>
+}
+<!-- Modal -->
+<div id="confirmmdl" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="z-index:10000">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm Screen</h4>
+            </div>
+            <div class="modal-body">
+                <div id="modelbody">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>InstituteId</td>
+                            <td id="modelinstid"></td>
+                        </tr>
+                        <tr>
+                            <td>Coordinator Name</td>
+                            <td id="modelcoorname"></td>
+                        </tr>
+                        <tr>
+                            <td>Account Number</td>
+                            <td id="modelAccNum"></td>
+                        </tr>
+                        <tr>
+                            <td>Amount</td>
+                            <td id="modelAmt"></td>
+                        </tr>
+                        <tr>
+                            <td>Limit</td>
+                            <td id="modelLimit"></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="text-align:center">
+                <button type="button" class="btn btn-success" onclick="confimsubmit()">Confirm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div style="text-align:center">
+    <!-- Modal -->
+    <div id="savemdl" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="z-index:10000">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Place Wait</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Label("msg", new { @id = "saveMessage" })
+                </div>
+                <div class="modal-footer" style="text-align:center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="msgbox" title="Message">
+    <div id="commitedtran">
+    </div>
+</div>
+<script>
+    function confimsubmit() {
+        $("button[type=button]").attr("disabled", "disabled");
+        $("#confirmmdl").modal('hide');
+        $("button[type=button]").removeAttr("disabled");
+        $("#savemdl").modal('show');
+        $.ajax({
+            url: "@Url.Action("AccountDetails", "ImprestMstr")",
+            type: "POST",
+            data: $("#accdetails").serialize(),
+            success: function (data) {
+                if (data.save == "s") {
+                }
+                $("#saveMessage").html(data.message);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR + textStatus + errorThrown);
+            }
+        })
+    }
+    function LimitEnter() {
+        $("#errLimit").html("");
+    }
+    //function instidinput() {
+    //    $("#instid").removeClass("glyphicon-search");
+    //    $("#instid").removeClass("glyphicon-ok");
+    //    $("#instid").removeClass("glyphicon-triangle-bottom");
+    //    $("#idimg").show();
+    //    $("#hiddenINSTID").val('');
+    //    $("#idCoorName").val('');
+    //    $("#idDepartment").val('');
+    //    $("#idDesig").val('');
+    //}
+    function Amountinput() {
+        //alert($("#AmountText").val());
+        var amount = /^\d+(.)?(\d+)?$/;
+        //var amount = /^[1-9]+((,)?(\d+)?)+(\.)?(\d+)$/;
+        if (!$("#AmountText").val() == '') {
+            if (!amount.test($("#AmountText").val())) {
+                $("#erAmountText").html("Amount Not valid");
+            } else {
+                $("#erAmountText").html("");
+            }
+        } else {
+            $("#erAmountText").html("");
+        }
+
+    }
+    function AccountRegEx(inp) {
+        var accountno = /^[0-9]+$/;
+        var valid = true;
+
+        if (inp.length != 0) {
+
+            if (!accountno.test(inp)) {
+                $("#erAccountNoTextBox").html("only number allowed");
+                valid = false;
+            }
+            else {
+                $("#erAccountNoTextBox").html("");
+                valid = true;
+            }
+        } else {
+            $("#erAccountNoTextBox").html("Account No Required");
+            valid = false;
+        }
+        return valid;
+    }
+    function AccountNoinput() {
+        AccountRegEx($("#AccountNoTextBox").val());
+        //$("#erAccountNoTextBox").html("");
+    }
+    function CAccountNoinput() {
+        AccountRegEx($("#CAccountNoTextBox").val());
+        //$("#erAccountNoTextBox").html("");
+    }
+    function validation() {
+        $("#commitedtran").empty();
+        var validate = true;
+        if ($("#hiddenINSTID").val() == '') {
+            $("#erINSTID").html("Select Institute ID");
+
+            $("#commitedtran").append("<p>Select Institute ID</p>");
+            if (validate != false) {
+                validate = false;
+            }
+
+        } else { $("#erINSTID").html(""); }
+        if ($("#AccountNoTextBox").val() == '') {
+            $("#erAccountNoTextBox").html("Enter Account No");
+            $("#commitedtran").append("<p>EnterAccount NO</p>");
+            if (validate != false) {
+                validate = false;
+            }
+        } else {
+            //$("#erAccountNoTextBox").html("");
+        }
+        if (AccountRegEx($("#AccountNoTextBox").val()) == false && $("#AccountNoTextBox").val() != '') {
+            $("#commitedtran").append("<p>Only number allowed in Account NO</p>");
+            if (validate != false) {
+                validate = false;
+            }
+        } else {
+
+            //$("#erAccountNoTextBox").html("");
+        }
+        if ($("#AmountText").val() == '') {
+            $("#erAmountText").html("Enter Amount");
+            $("#commitedtran").append("<p>Amount Not Entered</p>");
+            if (validate != false) {
+                validate = false;
+            }
+        } else { }
+        if ($("#AmountText").val() != $("#CAmountText").val()) {
+            $("#erAmountText").html("Amount Not Matching");
+            $("#commitedtran").append("<p>Amount Not Matching</p>");
+            if (validate != false) {
+                validate = false;
+            }
+        } else { //$("#erAmountText").html("");
+        }
+        if ($("#AccountNoTextBox").val() != $("#CAccountNoTextBox").val()) {
+            $("#erAccountNoTextBox").html("AccountNo Not Matching");
+            $("#commitedtran").append("<p>AccountNo Not Matching</p>");
+            if (validate != false) {
+                validate = false;
+            }
+        } else {
+
+        }
+
+        if (parseFloat($("#LimitText").val()) < parseFloat($('#AmountText').val())) {
+            $("#errLimit").html("limit less than Amount");
+            $("#commitedtran").append("<p>limit less than Amount</p>");
+            if (validate != false) {
+                validate = false;
+            }
+        }
+        else {
+
+        }
+        return validate;
+    }
+    function SubmitAccountDetails() {
+        if (validation()) {
+            $("#modelinstid").html($("#hiddenINSTID").val());
+            $("#modelAccNum").html($("#AccountNoTextBox").val());
+            $("#modelAmt").html($("#AmountText").val());
+            $("#modelLimit").html($("#LimitText").val());
+            $("#modelcoorname").html($("#idCoorName").val());
+            $("#confirmmdl").modal('show');
+        }
+        else {
+            $("#msgbox").dialog("open");
+        }
+    }
+    $(function () {
+        $("#msgbox").dialog({
+            autoOpen: false,
+            buttons: [
+                {
+                    text: "Close",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            ],
+            close: function (event, ui) {
+
+            },
+            closeOnEscape: false,
+            draggable: false,
+            modal: true,
+        });
+    });
+    @*$("#idInstid").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Url.Action("INSTID", "ImprestMstr")",
+                type: "POST",
+                dataType: "json",
+                data: { searchStr: request.term },
+                success: function (data) {
+                    $("#idimg").hide();
+                    if (data.length > 0) {
+                        $("#instid").removeClass("glyphicon-search");
+                        $("#instid").removeClass("glyphicon-ok");
+                        $("#instid").addClass("glyphicon-triangle-bottom");
+                    } else {
+                        $("#instid").addClass("glyphicon-search");
+                        $("#instid").removeClass("glyphicon-ok");
+                        $("#instid").removeClass("glyphicon-triangle-bottom");
+                    }
+                    response($.map(data, function (item) {
+                        return { label: item.INSTID + ' ' + item.Name, value: item.INSTID };
+                    }))
+                }
+            })
+        },
+        select: function (event, ui) {
+
+            $("#instid").removeClass("glyphicon-search");
+            $("#instid").removeClass("glyphicon-triangle-bottom");
+            $("#instid").addClass("glyphicon-ok");
+            $("#hiddenINSTID").val(ui.item.value);
+            $.ajax({
+                url: "@Url.Action("INSTIDSelect", "ImprestMstr")",
+                type: "POST",
+                dataType: "json",
+                data: { searchStr: ui.item.value },
+                success: function (data) {
+                    console.log(data);
+                    if (data.message == "success") {
+                        $("#erINSTID").html("");
+                        $("#idCoorName").val(data.cordDetails.Name);
+                        $("#idDepartment").val(data.cordDetails.Department);
+                        $("#idDesig").val(data.cordDetails.desig);
+                    }
+                    if (data.message == "error") {
+                        alert("Error in ImprestMstr Controller");
+                    }
+                }
+            })
+
+        },
+        close: function () {
+            if ($("#hiddenINSTID").val() == '') {
+                $("#instid").addClass("glyphicon-search");
+                $("#instid").removeClass("glyphicon-triangle-bottom");
+                $("#instid").removeClass("glyphicon-ok");
+            } else {
+                $("#instid").removeClass("glyphicon-search");
+                $("#instid").removeClass("glyphicon-triangle-bottom");
+                $("#instid").addClass("glyphicon-ok");
+            }
+
+        }
+    });*@
+</script>

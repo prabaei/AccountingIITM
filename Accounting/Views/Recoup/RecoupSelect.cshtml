@@ -1,0 +1,144 @@
+﻿@using System.Globalization
+@model IEnumerable<Accounting.data.Database.TransModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<style>
+    #feedback {
+        font-size: 1.4em;
+    }
+
+    #selectable .ui-selecting {
+        background: #FECA40;
+    }
+
+    .ui-selected {
+        background: #F39814;
+        color: white;
+    }
+
+    #selectable {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 60%;
+    }
+
+        #selectable li {
+            margin: 3px;
+            padding: 0.4em;
+            font-size: 1.4em;
+            height: 18px;
+        }
+</style>
+
+@using (Html.BeginForm("SubmitRecup", "Recoup", FormMethod.Post, new { id = "subRecup" }))
+{
+    <input type="hidden" value="" id="ToJson" name="ToJson" />
+    <input type="hidden" value="" id="TransNORE" name="TransNORE" />
+    <input type="hidden" value="" id="BkDateRE" name="BkDateRE" />
+    <input type="hidden" value="" id="voucherNoRE" name="voucherNoRE" />
+    <input type="hidden" value="" id="NarrationRE" name="NarrationRE" />
+    <input type="hidden" value="" id="RemarksRE" name="RemarksRE" />
+    <input type="hidden" value="" id="bankaccnoRE" name="bankaccnoRE" />
+    
+}
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <td>Project NO</td>
+            <td>Amount</td>
+            <td>Date</td>
+            <td>Voucher Type</td>
+            <td hidden>TransNO</td>
+
+        </tr>
+        <tbody id="Grid">
+            @foreach (var rec in Model)
+            {
+                <tr>
+                    <td>@rec.ProjectNo</td>
+                    <td>@rec.Amount</td>
+                    <td>@rec.bankDate</td>
+                    <td>@rec.voucherTypeStr</td>
+                    <td hidden>@rec.TransNO</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@*<button type="button" onclick="convertToJson()">Ok</button>*@
+@functions {
+    string GetDateString(DateTime? dt)
+    {
+        DateTime temp = Convert.ToDateTime(dt);
+        return temp.ToString("dd/MM/YYYY", CultureInfo.InvariantCulture);
+    }
+}
+@*<div class="panel panel-default">
+        <div class="panel-heading">Recoupment</div>
+        <div class="panel-body">
+
+
+        </div>
+    </div>*@
+
+
+@*<div id="msgbox" title="Message">
+    <div id="commitedtran">
+    </div>
+</div>*@
+
+
+<script>
+    var TransactionArray = [];
+   
+
+    //function selectPro(transno) {
+    //    console.log(transno);
+    //}
+
+    function convertToJson() {
+        //alert("cvc");
+        $("#ToJson").val(JSON.stringify(TransactionArray));
+        console.log(JSON.stringify(TransactionArray));
+        $("#subRecup").submit();
+    }
+
+    $(function () {
+    //    $('#msgbox').dialog({
+    //        autoOpen: false,
+    //        buttons: [
+    //            {
+    //                text: "Close",
+    //                click: function () {
+    //                    $(this).dialog("close");
+    //                }
+    //            }
+    //        ],
+    //        closeOnEscape: false,
+    //        draggable: false,
+    //        modal: true,
+    //    });
+
+        $("#Grid").selectable({
+            filter: 'tr',
+            selecting: function (event, ui) {
+                console.log(ui.selecting.lastElementChild.innerText);
+                TransactionArray.push(ui.selecting.lastElementChild.innerText);
+                console.log(TransactionArray);
+            },
+            unselecting: function (event, ui) {
+                console.log(ui.unselecting.lastElementChild.innerText);
+                var index = TransactionArray.indexOf(ui.unselecting.lastElementChild.innerText);
+                TransactionArray.splice(index, 1);
+                console.log(TransactionArray);
+            }
+        });
+    });
+</script>
+

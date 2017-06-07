@@ -1,0 +1,452 @@
+﻿
+@using Accounting.data.Database
+@model AccountTrans
+@{
+    //ViewBag.Title = "AccountTrans";
+    //TempData["AccTran"] = Model;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal closeBal = 0;
+}
+
+<h2>AccountTrans</h2>
+<script src="~/scripts/Account/AccountCommon.js"></script>
+
+@using (Html.BeginForm("ExporttoExcel", "Trans", FormMethod.Post, new { area = "", id = "ExporttoExcel" }))
+{
+    @Html.HiddenFor(m => m.AccountNO, new { })
+    @Html.HiddenFor(m => m.Fromdate, new { })
+    @Html.HiddenFor(m => m.ToDate, new { })
+    @Html.HiddenFor(m => m.coordnatorName, new { })
+    @Html.HiddenFor(m => m.VoucherTypeID, new {id="jj" })
+    @Html.HiddenFor(m => m.ShowBRS, new { })
+    @Html.HiddenFor(m => m.Allacc, new {id="kk" })
+}
+<div style="text-align:right">
+    <button type="button" class="btn btn-primary" onclick="Excelexport()">Export</button>
+</div>
+@using (Html.BeginForm("AccountTrans", "Trans", FormMethod.Post, new { id = "transdetail" }))
+{
+    @Html.HiddenFor(m => m.AccountNO, new { id = "hiddenaccountno" })
+    @*<div>
+        @Html.CheckBoxFor(m => m.showdeleted) @Html.Label("Show Deleted")
+    </div>*@
+    <div>
+        @Html.CheckBoxFor(m => m.ShowBRS) @Html.Label("Show OnlyBrs")
+    </div>
+    <div>
+        @Html.CheckBoxFor(m => m.cns, new { id = "cns" , @onchange = "cnsfun()" }) @Html.Label("claim not Submitted")
+    </div>
+    <div>
+        @Html.CheckBoxFor(m => m.Allacc, new {id="allacc" }) @Html.Label("All Account")
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4 col-lg-4">
+            @Html.LabelFor(m => m.coordnatorName, new { @class = "" })
+            <div class="input-group" style="max-width: 210px;">
+                @*<input id="idInstid" oninput="instidinput()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                @Html.TextBoxFor(m => m.coordnatorName, new { id = "Coordinator", type = "text", placeholder = "Coordnator Name", @class = "form-control", style = "max-width:210px", @oninput = "coornameinp()" })
+                <span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i id="coornameicon" class="glyphicon glyphicon-search"></i><img id="idcoorimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-4 col-lg-4">
+            @Html.LabelFor(m => m.AccountNO, new { @class = "" })
+            <div class="input-group" style="max-width: 210px;">
+                @*<input id="idInstid" oninput="instidinput()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                @Html.TextBoxFor(m => m.AccountNO, new { id = "AccountNo", type = "text", placeholder = "Account NO", @class = "form-control", style = "max-width:210px", @oninput = "accnoinp()" })
+                <span class="input-group-addon" aria-hidden="true" id="basic-addon2"><i id="accountnoicon" class="glyphicon glyphicon-search"></i><img id="idaccimg" src="~/Content/Images/loading.gif" width="20" style="display:none" /></span>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-4 col-lg-4">
+            @Html.LabelFor(m => m.VoucherTypeID, new { @class = "" })
+            <div class="input-group" style="max-width: 280px;">
+                @Html.DropDownListFor(m => m.VoucherTypeID, Model.vouchertypeList == null ? new List<SelectListItem>() : Model.vouchertypeList, new { @class = "form-control" ,@id= "VoucherTypeID", @onchange = "" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4 col-lg-4">
+            @Html.LabelFor(m => m.Fromdate, new { @class = "" })
+            <div class="" style="max-width: 280px;">
+                @*<input id="idInstid" oninput="instidinput()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                @Html.TextBoxFor(m => m.Fromdate, new { placeholder = "From Date", id = "FromDate", @class = "form-control",@oninput="fromdtinp()" })
+                <label id="erDate" style="color:red"></label>
+            </div>
+            
+        </div>
+        <div class="form-group col-sm-12 col-md-4 col-lg-4">
+            @Html.LabelFor(m => m.ToDate, new { @class = "" })
+            <div class="" style="max-width: 280px;">
+                @*<input id="idInstid" oninput="instidinput()" type="text" placeholder="Institute Id" class="form-control" style="max-width:280px" />*@
+                @Html.TextBoxFor(m => m.ToDate, new { placeholder = "To Date", id = "secToDate", @class = "form-control", @oninput = "todtinp()" })
+            </div>
+            <label id="ertDate" style="color:red"></label>
+        </div>
+        <div class="form-group col-sm-12 col-md-4 col-lg-4">
+            @Html.Label("  ")
+            <div class="input-group">
+                <button type="button" class="btn btn-info" onclick="submitval()">Search</button>
+            </div>
+        </div>
+    </div>
+    
+}
+
+<label id="erAccount" style="color:red"></label>
+
+<div class="row">
+    <div class="form-group col-sm-12 col-md-12 col-lg-12">
+
+        <table class="table table-striped" style="border-bottom-style:double">
+            <thead>
+                <tr>
+                    <td>Date</td>
+                    <td>Project No</td>
+                    <td>Particular</td>
+                    <td>Debit</td>
+                    <td>Credit</td>
+                    <td>Balance</td>
+
+                    <td>voucherNo</td>
+                    <td>Voucher Type</td>
+                    @*<td>Narration</td>*@
+                    @*<td>Remarks</td>*@
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody id="sortGrid">
+                @foreach (var dd in Model.accoutnTransaction)
+                {
+                    <tr style="background-color:@getcolor(dd)">
+                        <td>@dd.bnkdate</td>
+                        <td>@dd.ProjectNo</td>
+                        <td>@dd.Supplier</td>
+
+                        @*@if (dd.voucherType == 1 || dd.voucherType == 4 || dd.voucherType == 11 || dd.voucherType == 14)*@
+                        @if(dd.credit)
+                        {
+                            <td></td>
+                            <td>@dd.Amount</td>
+                        }
+                        else
+                        {
+                            <td>@dd.Amount</td>
+                            <td></td>
+                        }
+                        @if (dd.brsDone || !dd.Migrated)
+                        {
+                            //closeBal = (decimal)dd.currentBal;
+                            <td>@dd.currentBal</td>
+                        }
+                        else
+                        {
+                           <td></td>
+                        }
+
+
+                        <td>@dd.voucherNo</td>
+                        <td>@dd.voucherTypeStr</td>
+                        @*<td>@dd.narration</td>*@
+                        @*<td>@dd.Remarks</td>*@
+                        @if ((!dd.brsDone || dd.CNS) && !dd.Migrated)
+                        {
+                            <td>
+                                @if(!dd.credit) { 
+                                @Html.ActionLink("Edit", "Edit", "Trans", new { area = "", TRANSNO = dd.TransNO, accno = Model.AccountNO, coorname = Model.coordnatorName, fromDate = Model.Fromdate, toDate = Model.ToDate, VoucherType = Model.VoucherTypeID }, new { target = "_blank" })
+                                }
+
+                                @if (!dd.CNS)
+                                {
+                                    if (dd.deleted == false)
+                                    {
+                                        @Html.ActionLink("Delete", "Delete", "Trans", new { area = "", TRANSNO = dd.TransNO, accno = Model.AccountNO, coorname = Model.coordnatorName, fromDate = Model.Fromdate, toDate = Model.ToDate, VoucherType = Model.VoucherTypeID }, null)
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Undo Delete", "UnDelete", "Trans", new { area = "", TRANSNO = dd.TransNO, accno = Model.AccountNO, coorname = Model.coordnatorName, fromDate = Model.Fromdate, toDate = Model.ToDate, VoucherType = Model.VoucherTypeID }, null)
+                                    }
+                                }
+
+                            </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+
+                    </tr>
+                    //if (dd.voucherType == 1 || dd.voucherType == 4 || dd.voucherType == 8 || dd.voucherType == 11 || dd.voucherType == 14)
+                    if(dd.recoup)
+                    {
+                        foreach (var mm in Model.accoutnTransaction.Where(m=>m.recoup==false && (m.Recoupid == dd.Recoupid && m.Recoupid!=null)).ToList())
+                        {
+                            <tr style="background-color:@getcolor(dd)">
+                                <td></td>
+                                <td>@mm.ProjectNo @mm.Amount</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+
+                    }
+                }
+
+            </tbody>
+
+        </table>
+    
+        @functions {
+            string getcolor(TransModel tt)
+            {
+                if (!tt.brsDone)
+                {
+                    return "#ccffcc";
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+        @*@Html.Grid(Model.accoutnTransaction).Columns(columns =>
+            {
+            columns.Add(m => m.ProjectNo).Titled("Project NO");
+            columns.Add(d => d.Amount).Titled("Amount");
+            columns.Add(d => d.bnkdate).Titled("Date (DD/MM/YY)").Sortable(true);
+            columns.Add(foo => foo.voucherNo).Titled("Voucher NO");
+            columns.Add(foo => foo.voucherTypeStr).Titled("Voucher Type").Sortable(false).Filterable(false);
+            columns.Add(foo => foo.head).Titled("Head").Sortable(false).Filterable(false);
+            columns.Add(foo => foo.narration).Titled("Narration").Sortable(false).Filterable(false);
+            columns.Add(m => m.Remarks).Titled("Remarks").Sortable(false).Filterable(false);
+            columns.Add().Titled("Action").Encoded(false).Sanitized(false).SetWidth(30)
+                .RenderValueAs(d =>
+             @<b>
+                 @Html.ActionLink("Edit", "Edit", "Trans", new { area = "", TRANSNO = d.TransNO,accno=Model.AccountNO,coorname=Model.coordnatorName,fromDate=Model.Fromdate,toDate=Model.ToDate,VoucherType=Model.VoucherTypeID }, null)
+                 @if (d.deleted == false)
+                 {
+                     @Html.ActionLink("Delete", "Delete", "Trans", new { area = "", TRANSNO = d.TransNO, accno = Model.AccountNO, coorname = Model.coordnatorName, fromDate = Model.Fromdate, toDate = Model.ToDate, VoucherType = Model.VoucherTypeID}, null)
+                 }
+                 else
+                 {
+                     @Html.ActionLink("Undo Delete", "UnDelete", "Trans", new { area = "", TRANSNO = d.TransNO, accno = Model.AccountNO, coorname = Model.coordnatorName, fromDate = Model.Fromdate, toDate = Model.ToDate, VoucherType = Model.VoucherTypeID }, null)
+                 }
+             </b>);
+            }).WithPaging(15)*@
+    </div>
+</div>
+<script>
+    function Excelexport() {
+        $('#ExporttoExcel').submit();
+    }
+    function validate() {
+        if ($('#VoucherTypeID').val() == '10' && $('#allacc').prop("checked") == true) {
+            return true;
+        }
+        valid = true;
+        if ($('#hiddenaccountno').val() == '') {
+            valid = false;
+            $('#erAccount').html('select account no');
+        }
+        var dtreg = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+
+        if (dtreg.test($('#FromDate').val())) {
+            if ($('#FromDate').val().length != 10) {
+                valid = false;
+                $('#erDate').html('select from date');
+            }
+            
+        }
+        if (dtreg.test($('#secToDate').val())) {
+            if ($('#secToDate').val().length != 10) {
+                valid = false;
+                $('#ertDate').html('select to date');
+            }
+            
+        }
+        return valid;
+    }
+    function submitval() {
+        if (validate()) {
+            $('#transdetail').submit();
+        }
+    }
+   
+    function coornameinp() {
+        ///clear hidden value
+        searchIcon('#coornameicon');
+        searchIcon('#accountnoicon');
+        ClearTestBox('#hiddenaccountno');
+        ///clear accontno textbox
+        ClearTestBox('#AccountNo');
+        removeIcon('#coornameicon');
+        ShowLoader('#idcoorimg');
+        if ($('#Coordinator').val() == '') {
+            HideLoader('#idcoorimg');
+            removeIcon('#coornameicon');
+            searchIcon('#coornameicon');
+        }
+    }
+    function accnoinp() {
+        ///clear hidden value
+        searchIcon('#coornameicon');
+        searchIcon('#accountnoicon');
+        ClearTestBox('#hiddenaccountno');
+        ///clear coordanator textbox
+        ClearTestBox('#Coordinator');
+        removeIcon('#accountnoicon');
+        ShowLoader('#idaccimg');
+        if ($('#AccountNo').val() == '') {
+            HideLoader('#idaccimg');
+            removeIcon('#accountnoicon');
+            searchIcon('#accountnoicon');
+        }
+    }
+    function fromdtinp() {
+        var dtstr=$('#FromDate').val();
+        dtstr = dtstr.replace('.', '/');
+        dtstr = dtstr.replace('-', '/');
+        $('#FromDate').val(dtstr);
+    }
+    function todtinp() {
+        var dtstr = $('#secToDate').val();
+        dtstr=dtstr.replace('.', '/');
+       dtstr= dtstr.replace('-', '/');
+       $('#secToDate').val(dtstr);
+    }
+    function cnsfun() {
+        //alert();$(this).prop("checked")
+        if ($('#cns').prop("checked") == true) {
+            //alert();
+            $('#allacc').prop('disabled', false);
+        } else {
+            $('#allacc').prop('disabled', true);
+        }
+    }
+    //function vouchch() {
+    //    //alert();
+    //    if ($('#VoucherTypeID').val() == '10') {
+    //        //alert();
+    //        $('#allacc').prop('disabled', false);
+    //    } else {
+    //        $('#allacc').prop('disabled', true);
+    //    }
+    //}
+    $(function () {
+       
+        if ($('#VoucherTypeID').val() == '10') {
+            //alert();
+            $('#allacc').prop('disabled', false);
+        } else {
+            $('#allacc').prop('disabled', true);
+        }
+        var today = new Date();
+
+        //$("#FromDate").datepicker({
+        //    changeMonth: true,
+        //    changeYear: true,
+        //    dateFormat: 'dd/mm/yy'
+        //});
+        //$("#secToDate").datepicker({
+        //    changeMonth: true,
+        //    changeYear: true,
+        //    dateFormat: 'dd/mm/yy',
+        //    //setDate: today
+        //});
+        $("#secToDate").datepicker("setDate", today);
+    });
+
+
+
+    ////autocomplete Coordiname
+    $("#Coordinator").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Url.Action("coorname", "Trans",new { area = "" })",
+                type: "POST",
+                dataType: "json",
+                data: { coordinatorName: request.term },
+                success: function (data) {
+                    //console.log(data);
+                    HideLoader("#idcoorimg");
+                    if (data.job == "s") {
+                        if (data.coordName.length == 0) {
+                            searchIcon("#coornameicon");
+                        } else {
+                            BottomTriangleIcon("#coornameicon");
+                        }
+                    }
+                    response($.map(data.coordName, function (item) {
+                        return { label: item.name, value: item.name, accno: item.accno, instid: item.instid };
+                    }))
+                }
+            })
+        },
+
+        select: function (event, ui) {
+            OkIcon('#coornameicon');
+            OkIcon('#accountnoicon');
+            $("#hiddenaccountno").val(ui.item.accno);
+            $("#AccountNo").val(ui.item.accno);
+            //$("#idInstid").val(ui.item.instid);
+        },
+    }).autocomplete("instance")._renderItem = function (ul, item) {
+        //console.log(item);
+        return $("<li>")
+          .append("<div>" + item.instid + '<br>' + item.label + "<br>" + item.accno + "</div>")
+          .appendTo(ul);
+    };
+    ////autocomplete Coordiname
+
+    //////Autocomplete Account NO
+    $("#AccountNo").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "@Url.Action("AccountNO", "Trans",new { area = "" })",
+                type: "POST",
+                dataType: "json",
+                data: { AccountNO: request.term },
+                success: function (data) {
+                    //setTickimprestfield();
+                    HideLoader("#idaccimg");
+                    if (data.job == "s") {
+                        if (data.accnolst.length == 0) {
+                            searchIcon("#accountnoicon");
+                        } else {
+                            BottomTriangleIcon("#accountnoicon");
+                        }
+                    }
+                    response($.map(data.accnolst, function (item) {
+                        return { label: item.name, value: item.accno, name: item.name, instid: item.instid };
+                    }))
+                }
+            })
+        },
+        close: function (event, ui) {
+            if ($("#hiddenaccountno").val() != '') {
+                OkIcon("#accountnoicon");
+            } else {
+                searchIcon("#accountnoicon");
+            }
+        },
+        select: function (event, ui) {
+
+            $('#Coordinator').val(ui.item.name);
+            $('#hiddenaccountno').val(ui.item.value);
+
+            OkIcon('#coornameicon');
+            OkIcon('#accountnoicon');
+
+        },
+    }).autocomplete("instance")._renderItem = function (ul, item) {
+        //console.log(item);
+        return $("<li>")
+          .append("<div>" + item.instid + '<br>' + item.label + "<br>" + item.value + "</div>")
+          .appendTo(ul);
+    };
+    //////AutoComplete Account NO
+</script>

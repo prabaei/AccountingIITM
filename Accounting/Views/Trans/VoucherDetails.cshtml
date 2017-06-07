@@ -1,0 +1,47 @@
+﻿@using Accounting.Models.Trans
+@model List<VouDetail>
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <td>Select</td>
+            <td>Project NO</td>
+            <td>Date</td>
+            <td>COMNO</td>
+            <td>Amount</td>
+            <td>Cheque No</td>
+            <td>Disc</td>
+        </tr>
+
+        @foreach (var rec in Model)
+        {
+            <tr>
+                <td><button type="button" onclick="selectVoucher('@rec.projectNO','@rec.Date','@rec.AMOUNT','@rec.CQNO','@rec.CommitNo','@rec.ProjectType','@rec.HEAD','@rec.DISC')">Ok</button></td>
+                <td>@rec.projectNO</td>
+                <td>@rec.Date</td>
+                <td>@rec.CommitNo</td>
+                <td>@rec.AMOUNT</td>
+                <td>@rec.CQNO</td>
+                <td>@rec.DISC</td>
+            </tr>
+        }
+    </table>
+}
+
+<script>
+    function selectVoucher(pno, date, amount, cqno, COMNO,pt,head,disc) {
+        $('#hiddenProjectNO').val(pno);
+        $('#hiddenComitNO').val(COMNO);
+        $('#projectNO').val(pno);
+        $('#ConsignmentInp').val(COMNO);
+     
+        $('#Amount').val(amount);
+        $('#BkDate').val(date);
+        $('#ChequeNO').val(cqno);
+        $('#hiddenprojtype').val(Number(pt));
+        $('#hiddenHead').val(head);
+        $('#hiddenDisc').val(disc);
+        $('#VoucherTable').dialog('close');
+    }
+</script>

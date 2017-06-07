@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ImprestMVCModelStoreContainer" CdmEntityContainer="ImprestMVCEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="ImprestMVCModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccTransactions">
+      <EntityTypeMapping TypeName="ImprestMVCModel.AccTransaction">
+        <MappingFragment StoreEntitySet="AccTransaction">
+          <ScalarProperty Name="TransNO" ColumnName="TransNO" />
+          <ScalarProperty Name="BankAccountNO" ColumnName="BankAccountNO" />
+          <ScalarProperty Name="INSTID" ColumnName="INSTID" />
+          <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+          <ScalarProperty Name="voucherType" ColumnName="voucherType" />
+          <ScalarProperty Name="voucherNo" ColumnName="voucherNo" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="bankDate" ColumnName="bankDate" />
+          <ScalarProperty Name="currentBal" ColumnName="currentBal" />
+          <ScalarProperty Name="AvailableBal" ColumnName="AvailableBal" />
+          <ScalarProperty Name="ChequeNO" ColumnName="ChequeNO" />
+          <ScalarProperty Name="narration" ColumnName="narration" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="TransCreated" ColumnName="TransCreated" />
+          <ScalarProperty Name="TransUpdated" ColumnName="TransUpdated" />
+          <ScalarProperty Name="CommitmentNO" ColumnName="CommitmentNO" />
+          <ScalarProperty Name="TransCommited" ColumnName="TransCommited" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+          <ScalarProperty Name="Head" ColumnName="Head" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="brsDone" ColumnName="brsDone" />
+          <ScalarProperty Name="CNS" ColumnName="CNS" />
+          <ScalarProperty Name="Recoupid" ColumnName="Recoupid" />
+          <ScalarProperty Name="RecupDone" ColumnName="RecupDone" />
+          <ScalarProperty Name="BankPart" ColumnName="BankPart" />
+          <ScalarProperty Name="supplier" ColumnName="supplier" />
+          <ScalarProperty Name="ChequeDt" ColumnName="ChequeDt" />
+          <ScalarProperty Name="MailSent" ColumnName="MailSent" />
+          <ScalarProperty Name="MailDelivered" ColumnName="MailDelivered" />
+          <ScalarProperty Name="migrated" ColumnName="migrated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChequeNotDeps">
+      <EntityTypeMapping TypeName="ImprestMVCModel.ChequeNotDep">
+        <MappingFragment StoreEntitySet="ChequeNotDep">
+          <ScalarProperty Name="Tranno" ColumnName="Tranno" />
+          <ScalarProperty Name="Accno" ColumnName="Accno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClimNotSubmitteds">
+      <EntityTypeMapping TypeName="ImprestMVCModel.ClimNotSubmitted">
+        <MappingFragment StoreEntitySet="ClimNotSubmitted">
+          <ScalarProperty Name="Tranno" ColumnName="Tranno" />
+          <ScalarProperty Name="Accno" ColumnName="Accno" />
+          <ScalarProperty Name="mailsent" ColumnName="mailsent" />
+          <ScalarProperty Name="mailDelivered" ColumnName="mailDelivered" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="ImprestMVCModel.Country">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Country1" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorLogs">
+      <EntityTypeMapping TypeName="ImprestMVCModel.ErrorLog">
+        <MappingFragment StoreEntitySet="ErrorLog">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LoggedAt" ColumnName="LoggedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImprestMasters">
+      <EntityTypeMapping TypeName="ImprestMVCModel.ImprestMaster">
+        <MappingFragment StoreEntitySet="ImprestMaster">
+          <ScalarProperty Name="BankAccountNo" ColumnName="BankAccountNo" />
+          <ScalarProperty Name="InstituteId" ColumnName="InstituteId" />
+          <ScalarProperty Name="CoordinatorName" ColumnName="CoordinatorName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="CUSTID" ColumnName="CUSTID" />
+          <ScalarProperty Name="CardNO" ColumnName="CardNO" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Limit" ColumnName="Limit" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Migrateds">
+      <EntityTypeMapping TypeName="ImprestMVCModel.Migrated">
+        <MappingFragment StoreEntitySet="Migrated">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="Autoid" ColumnName="Autoid" />
+          <ScalarProperty Name="TallyMasterId" ColumnName="TallyMasterId" />
+          <ScalarProperty Name="voucherId" ColumnName="voucherId" />
+          <ScalarProperty Name="VoucherNumber" ColumnName="VoucherNumber" />
+          <ScalarProperty Name="voucherDate" ColumnName="voucherDate" />
+          <ScalarProperty Name="voucherType" ColumnName="voucherType" />
+          <ScalarProperty Name="LedgerName" ColumnName="LedgerName" />
+          <ScalarProperty Name="BillName" ColumnName="BillName" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Narration" ColumnName="Narration" />
+          <ScalarProperty Name="InstrumentNO" ColumnName="InstrumentNO" />
+          <ScalarProperty Name="InstrumentType" ColumnName="InstrumentType" />
+          <ScalarProperty Name="InstrumentBank" ColumnName="InstrumentBank" />
+          <ScalarProperty Name="addDate" ColumnName="addDate" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="projectNo" ColumnName="projectNo" />
+          <ScalarProperty Name="appledgername" ColumnName="appledgername" />
+          <ScalarProperty Name="CostCentreName" ColumnName="CostCentreName" />
+          <ScalarProperty Name="currentBal" ColumnName="currentBal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MigratedVouchers">
+      <EntityTypeMapping TypeName="ImprestMVCModel.MigratedVoucher">
+        <MappingFragment StoreEntitySet="MigratedVoucher">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="voucherType" ColumnName="voucherType" />
+          <ScalarProperty Name="crdit" ColumnName="crdit" />
+          <ScalarProperty Name="voucherId" ColumnName="voucherId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonthlyBalances">
+      <EntityTypeMapping TypeName="ImprestMVCModel.MonthlyBalance">
+        <MappingFragment StoreEntitySet="MonthlyBalances">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Accno" ColumnName="Accno" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="bankBalance" ColumnName="bankBalance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectTypeTables">
+      <EntityTypeMapping TypeName="ImprestMVCModel.ProjectTypeTable">
+        <MappingFragment StoreEntitySet="ProjectTypeTable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PrjType" ColumnName="PrjType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecoupRecords">
+      <EntityTypeMapping TypeName="ImprestMVCModel.RecoupRecord">
+        <MappingFragment StoreEntitySet="RecoupRecord">
+          <ScalarProperty Name="RecoupId" ColumnName="RecoupId" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierMstrs">
+      <EntityTypeMapping TypeName="ImprestMVCModel.SupplierMstr">
+        <MappingFragment StoreEntitySet="SupplierMstr">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="BillNO" ColumnName="BillNO" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Projectno" ColumnName="Projectno" />
+          <ScalarProperty Name="InstituteId" ColumnName="InstituteId" />
+          <ScalarProperty Name="Pan" ColumnName="Pan" />
+          <ScalarProperty Name="Tin" ColumnName="Tin" />
+          <ScalarProperty Name="Tan" ColumnName="Tan" />
+          <ScalarProperty Name="projectType" ColumnName="projectType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSesses">
+      <EntityTypeMapping TypeName="ImprestMVCModel.UserSess">
+        <MappingFragment StoreEntitySet="UserSess">
+          <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+          <ScalarProperty Name="sessionId" ColumnName="sessionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTbls">
+      <EntityTypeMapping TypeName="ImprestMVCModel.UserTbl">
+        <MappingFragment StoreEntitySet="UserTbl">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UsrRole" ColumnName="UsrRole" />
+          <ScalarProperty Name="NewReg" ColumnName="NewReg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoucherSubTypes">
+      <EntityTypeMapping TypeName="ImprestMVCModel.VoucherSubType">
+        <MappingFragment StoreEntitySet="VoucherSubType">
+          <ScalarProperty Name="SubTypeID" ColumnName="SubTypeID" />
+          <ScalarProperty Name="VoucherTypeId" ColumnName="VoucherTypeId" />
+          <ScalarProperty Name="VoucherType" ColumnName="VoucherType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoucherTypes">
+      <EntityTypeMapping TypeName="ImprestMVCModel.VoucherType">
+        <MappingFragment StoreEntitySet="VoucherType">
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="VoucherTypeName" ColumnName="VoucherTypeName" />
+          <ScalarProperty Name="deposit" ColumnName="deposit" />
+          <ScalarProperty Name="ForEntry" ColumnName="ForEntry" />
+          <ScalarProperty Name="Brs" ColumnName="Brs" />
+          <ScalarProperty Name="cns" ColumnName="cns" />
+          <ScalarProperty Name="recoup" ColumnName="recoup" />
+          <ScalarProperty Name="cq" ColumnName="cq" />
+          <ScalarProperty Name="creditoFacc" ColumnName="creditoFacc" />
+          <ScalarProperty Name="depositdd" ColumnName="depositdd" />
+          <ScalarProperty Name="wddd" ColumnName="wddd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

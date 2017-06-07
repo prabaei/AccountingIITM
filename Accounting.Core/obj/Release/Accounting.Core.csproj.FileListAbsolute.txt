@@ -1,0 +1,5 @@
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\bin\Release\Accounting.Core.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\bin\Release\Accounting.Core.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\obj\Release\Accounting.Core.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\obj\Release\Accounting.Core.dll
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounting.Core\obj\Release\Accounting.Core.pdb
