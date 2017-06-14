@@ -19,7 +19,7 @@ namespace Accounting.data.Database
         public string TransNO { get; set; }
         [StringLength(4)]
         public string INSTID { get; set; }
-        [StringLength(20)]
+        [StringLength(25)]
         public string ProjectNo { get; set; }
         public int? voucherType { get; set; }
         [Index("XI_VoucherNo_AccTransaction")]

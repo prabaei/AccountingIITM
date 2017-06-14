@@ -13,9 +13,7 @@ namespace Accounting.AccountAuthorize
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-
-
-            
+           
             //base.HandleUnauthorizedRequest(filterContext);
             if (filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
