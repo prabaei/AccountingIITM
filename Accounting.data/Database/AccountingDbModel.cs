@@ -15,7 +15,7 @@ namespace Accounting.data.Database
         public AccountingDbModel()
             : base("name=Accounting")
         {
-            Database.SetInitializer<AccountingDbModel>(null);
+            Database.SetInitializer<AccountingDbModel>(new DropCreateDatabaseIfModelChanges<AccountingDbModel>());
         }
 
         public virtual DbSet<VoucherSubType> VoucherSubTypes { get; set; }

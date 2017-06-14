@@ -151,11 +151,11 @@
                         @if ((!dd.brsDone || dd.CNS) && !dd.Migrated)
                         {
                             <td>
-                                @if(!dd.credit) { 
+                                @*@if(!dd.credit) { 
                                 @Html.ActionLink("Edit", "Edit", "Trans", new { area = "", TRANSNO = dd.TransNO, accno = Model.AccountNO, coorname = Model.coordnatorName, fromDate = Model.Fromdate, toDate = Model.ToDate, VoucherType = Model.VoucherTypeID }, new { target = "_blank" })
-                                }
+                                }*@
 
-                                @if (!dd.CNS)
+                                @if (!dd.CNS && dd.Migrated)
                                 {
                                     if (dd.deleted == false)
                                     {

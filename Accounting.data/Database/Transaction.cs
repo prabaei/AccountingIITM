@@ -23,7 +23,7 @@ namespace Accounting.data.Database
         public string ProjectNo { get; set; }
         public int? voucherType { get; set; }
         [Index("XI_VoucherNo_AccTransaction")]
-        [StringLength(10)]
+        [StringLength(20)]
         public string voucherNo { get; set; }
         public decimal? Amount { get; set; }
         public DateTime? bankDate { get; set; }
