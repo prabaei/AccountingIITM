@@ -46,3 +46,27 @@ C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\Accounti
 C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\AccountingIITM\Accounting.data\obj\Release\Accounting.data.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\AccountingIITM\Accounting.data\obj\Release\Accounting.data.dll
 C:\Users\Administrator\Documents\Visual Studio 2015\Projects\Accounting\AccountingIITM\Accounting.data\obj\Release\Accounting.data.pdb
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\Accounting.data.dll.config
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\Accounting.data.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\Accounting.data.pdb
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\EntityFramework.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\EntityFramework.SqlServer.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\EPPlus.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.Mvc.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.Razor.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.WebPages.Razor.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.WebPages.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\Microsoft.Web.Infrastructure.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.WebPages.Deployment.dll
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\EntityFramework.xml
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\EntityFramework.SqlServer.xml
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\EPPlus.xml
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.Mvc.xml
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.Razor.xml
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.WebPages.Razor.xml
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.WebPages.xml
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\Microsoft.Web.Infrastructure.xml
+F:\accountgit\AccountingIITM\Accounting.data\bin\Release\System.Web.WebPages.Deployment.xml
+F:\accountgit\AccountingIITM\Accounting.data\obj\Release\Accounting.data.csprojResolveAssemblyReference.cache
+F:\accountgit\AccountingIITM\Accounting.data\obj\Release\Accounting.data.dll
+F:\accountgit\AccountingIITM\Accounting.data\obj\Release\Accounting.data.pdb

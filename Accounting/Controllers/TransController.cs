@@ -412,7 +412,7 @@ namespace Accounting.Controllers
                     Transave.projtype = transaction.projtype;
                     Transave.Head = transaction.Head;
                     Transave.Description = transaction.Description;
-                    Transave.supplier = 1;
+                    Transave.supplier = transaction.supplier;
                     Transave.TransCommited = true;
                     if (_accountdbmodel.VoucherTypes.Where(m => m.TypeId == transaction.voucherType).Select(m => m.deposit).FirstOrDefault())
                     {
@@ -1251,260 +1251,304 @@ namespace Accounting.Controllers
 
             DateTime todate = DateTime.ParseExact(Tranfilter.ToDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            //List<TransModel> Taccounttrans = _accountdbmodel.migrated.Where(m => m.AccountNo == Tranfilter.AccountNO && (m.voucherDate >= fromdate && m.voucherDate <= todate)).Select(m => new TransModel()
-            //{
-            //    Amount = m.Amount,
-            //    bankDate = m.voucherDate,
-            //    credit = m.Credit,
-            //    ProjectNo = m.CostCentreName,
-            //    voucherNo = m.BillName,
-            //    ChequeNO = m.InstrumentNO,
-            //    voucherTypeStr = m.voucherType,
-            //    Supplier = m.LedgerName,
-            //    Migrated = true
-            //}).ToList();
-            //var dd = Taccounttrans.Where(m => m.credit == false).ToList();
+            
             IEnumerable<TransModel> accounttrans = new List<TransModel>();
             var tempList = _accountdbmodel.Transaction.Where(m => m.BankAccountNO == Tranfilter.AccountNO && (m.bankDate >= fromdate && m.bankDate <= todate)).ToList();
-            if (Tranfilter.VoucherTypeID == 10 && Tranfilter.cns != true)// alltransaction
+            if(Tranfilter.VoucherTypeID!=10)
+            tempList=tempList.Where(m => m.voucherType == Tranfilter.VoucherTypeID).ToList();
+            
+            ////special filteration goes here
+            
+            if (Tranfilter.cns)
             {
-
-                if (Tranfilter.ShowBRS)
+                if (Tranfilter.Allacc)
                 {
-                    accounttrans = (from tran in tempList
-                                    join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
-                                    join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
-                                    where tran.TransCommited == true && tran.brsDone == true
-                                    orderby tran.brsDone descending, tran.bankDate, tran.orderId
-                                    select new TransModel()
-                                    {
-                                        BankAccountNO = tran.BankAccountNO,
-                                        ProjectNo = tran.ProjectNo,
-                                        bankDate = tran.bankDate,
-                                        Amount = tran.Amount,
-                                        ChequeNO = tran.ChequeNO,
-                                        CommitmentNO = tran.CommitmentNO,
-                                        voucherNo = tran.voucherNo,
-                                        voucherType = tran.voucherType,
-                                        voucherTypeStr = vt.VoucherTypeName,
-                                        narration = tran.narration,
-                                        Remarks = tran.Remarks,
-                                        head = tran.Head,
-                                        desc = tran.Description,
-                                        TransNO = tran.TransNO,
-                                        deleted = tran.deleted,
-                                        currentBal = tran.currentBal,
-                                        AvailableBal = tran.AvailableBal,
-                                        brsDone = tran.brsDone,
-                                        orderId = tran.orderId,
-                                        bankPart = tran.BankPart,
-                                        CoordinatorName = Tranfilter.coordnatorName,
-                                        Supplier = sup.Name,
-                                        Recoupid = tran.Recoupid,
-                                        credit = vt.deposit,
-                                        CNS = vt.cns,
-                                        recoup = vt.recoup,
-                                    }).ToList();
+                    tempList = _accountdbmodel.Transaction.Where(m => (m.bankDate >= fromdate && m.bankDate <= todate) && m.CNS == true).ToList();
                 }
                 else
                 {
-                    accounttrans = (from tran in tempList
-                                    join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
-                                    join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
-                                    where tran.TransCommited == true
-                                    orderby tran.brsDone descending, tran.bankDate, tran.orderId
-                                    select new TransModel()
-                                    {
-                                        BankAccountNO = tran.BankAccountNO,
-                                        ProjectNo = tran.ProjectNo,
-                                        bankDate = tran.bankDate,
-                                        Amount = tran.Amount,
-                                        ChequeNO = tran.ChequeNO,
-                                        CommitmentNO = tran.CommitmentNO,
-                                        voucherNo = tran.voucherNo,
-                                        voucherType = tran.voucherType,
-                                        voucherTypeStr = vt.VoucherTypeName,
-                                        narration = tran.narration,
-                                        Remarks = tran.Remarks,
-                                        head = tran.Head,
-                                        desc = tran.Description,
-                                        TransNO = tran.TransNO,
-                                        deleted = tran.deleted,
-                                        currentBal = tran.currentBal,
-                                        AvailableBal = tran.AvailableBal,
-                                        brsDone = tran.brsDone,
-                                        orderId = tran.orderId,
-                                        bankPart = tran.BankPart,
-                                        CoordinatorName = Tranfilter.coordnatorName,
-                                        Supplier = sup.Name,
-                                        Recoupid = tran.Recoupid,
-                                        credit = vt.deposit,
-                                        CNS = vt.cns,
-                                        recoup = vt.recoup,
-                                    }).ToList();
+                    tempList = tempList.Where(m => m.CNS == true).ToList();
                 }
             }
+          
 
-            else
+            if (Tranfilter.ShowBRS)
             {
-                if (Tranfilter.cns && Tranfilter.Allacc)
-                {
-                    accounttrans = (from tran in _accountdbmodel.Transaction
-                                    join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
-                                    join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
-                                    join coor in _accountdbmodel.ImprestMasters on tran.INSTID equals coor.InstituteId
-                                    where tran.CNS == true && tran.TransCommited == true && tran.deleted == false
-                                    orderby tran.brsDone descending, tran.bankDate, tran.orderId
-                                    select new TransModel()
-                                    {
-                                        BankAccountNO = tran.BankAccountNO,
-                                        ProjectNo = tran.ProjectNo,
-                                        bankDate = tran.bankDate,
-                                        Amount = tran.Amount,
-                                        ChequeNO = tran.ChequeNO,
-                                        CommitmentNO = tran.CommitmentNO,
-                                        voucherNo = tran.voucherNo,
-                                        voucherType = tran.voucherType,
-                                        voucherTypeStr = vt.VoucherTypeName,
-                                        narration = tran.narration,
-                                        Remarks = tran.Remarks,
-                                        head = tran.Head,
-                                        desc = tran.Description,
-                                        TransNO = tran.TransNO,
-                                        deleted = tran.deleted,
-                                        currentBal = tran.currentBal,
-                                        AvailableBal = tran.AvailableBal,
-                                        brsDone = tran.brsDone,
-                                        orderId = tran.orderId,
-                                        bankPart = tran.BankPart,
-                                        CoordinatorName = coor.CoordinatorName,
-                                        Supplier = sup.Name,
-                                        Recoupid = tran.Recoupid,
-                                        credit = vt.deposit,
-                                        CNS = vt.cns,
-                                        recoup = vt.recoup,
-                                    }).ToList();
-
-                    
-                    return accounttrans;
-                }
-                else if (Tranfilter.cns && !Tranfilter.Allacc)///cns for one account
-                {
-                    accounttrans = (from tran in tempList
-                                    join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
-                                    join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
-                                    join coor in _accountdbmodel.ImprestMasters on tran.INSTID equals coor.InstituteId
-                                    where tran.CNS == true && tran.TransCommited == true && tran.deleted == false
-                                    orderby tran.brsDone descending, tran.bankDate, tran.orderId
-                                    select new TransModel()
-                                    {
-                                        BankAccountNO = tran.BankAccountNO,
-                                        ProjectNo = tran.ProjectNo,
-                                        bankDate = tran.bankDate,
-                                        Amount = tran.Amount,
-                                        ChequeNO = tran.ChequeNO,
-                                        CommitmentNO = tran.CommitmentNO,
-                                        voucherNo = tran.voucherNo,
-                                        voucherType = tran.voucherType,
-                                        voucherTypeStr = vt.VoucherTypeName,
-                                        narration = tran.narration,
-                                        Remarks = tran.Remarks,
-                                        head = tran.Head,
-                                        desc = tran.Description,
-                                        TransNO = tran.TransNO,
-                                        deleted = tran.deleted,
-                                        currentBal = tran.currentBal,
-                                        AvailableBal = tran.AvailableBal,
-                                        brsDone = tran.brsDone,
-                                        orderId = tran.orderId,
-                                        bankPart = tran.BankPart,
-                                        CoordinatorName = coor.CoordinatorName,
-                                        Supplier = sup.Name,
-                                        Recoupid = tran.Recoupid,
-                                        credit = vt.deposit,
-                                        CNS = vt.cns,
-                                        recoup = vt.recoup,
-                                    }).ToList();
-                    //Taccounttrans.AddRange(accounttrans);
-                    return accounttrans;
-                }
-
-                else if (Tranfilter.ShowBRS)
-                {
-                    accounttrans = (from tran in tempList
-                                    join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
-                                    join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
-
-                                    where tran.voucherType == Tranfilter.VoucherTypeID && tran.TransCommited == true && tran.brsDone == true
-                                    orderby tran.brsDone descending, tran.bankDate, tran.orderId
-                                    select new TransModel()
-                                    {
-                                        BankAccountNO = tran.BankAccountNO,
-                                        ProjectNo = tran.ProjectNo,
-                                        bankDate = tran.bankDate,
-                                        Amount = tran.Amount,
-                                        ChequeNO = tran.ChequeNO,
-                                        CommitmentNO = tran.CommitmentNO,
-                                        voucherNo = tran.voucherNo,
-                                        voucherType = tran.voucherType,
-                                        voucherTypeStr = vt.VoucherTypeName,
-                                        narration = tran.narration,
-                                        Remarks = tran.Remarks,
-                                        head = tran.Head,
-                                        desc = tran.Description,
-                                        TransNO = tran.TransNO,
-                                        deleted = tran.deleted,
-                                        currentBal = tran.currentBal,
-                                        AvailableBal = tran.AvailableBal,
-                                        brsDone = tran.brsDone,
-                                        orderId = tran.orderId,
-                                        bankPart = tran.BankPart,
-                                        CoordinatorName = Tranfilter.coordnatorName,
-                                        Supplier = sup.Name,
-                                        Recoupid = tran.Recoupid,
-                                        credit = vt.deposit,
-                                        CNS = vt.cns,
-                                        recoup = vt.recoup,
-                                    }).ToList();
-                }
-                else
-                {
-                    accounttrans = (from tran in tempList
-                                    join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
-                                    join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
-                                    where tran.voucherType == Tranfilter.VoucherTypeID && tran.TransCommited == true && tran.deleted == false
-                                    orderby tran.brsDone descending, tran.bankDate, tran.orderId
-                                    select new TransModel()
-                                    {
-                                        BankAccountNO = tran.BankAccountNO,
-                                        ProjectNo = tran.ProjectNo,
-                                        bankDate = tran.bankDate,
-                                        Amount = tran.Amount,
-                                        ChequeNO = tran.ChequeNO,
-                                        CommitmentNO = tran.CommitmentNO,
-                                        voucherNo = tran.voucherNo,
-                                        voucherType = tran.voucherType,
-                                        voucherTypeStr = vt.VoucherTypeName,
-                                        narration = tran.narration,
-                                        Remarks = tran.Remarks,
-                                        head = tran.Head,
-                                        desc = tran.Description,
-                                        TransNO = tran.TransNO,
-                                        deleted = tran.deleted,
-                                        currentBal = tran.currentBal,
-                                        AvailableBal = tran.AvailableBal,
-                                        brsDone = tran.brsDone,
-                                        orderId = tran.orderId,
-                                        bankPart = tran.BankPart,
-                                        CoordinatorName = Tranfilter.coordnatorName,
-                                        Supplier = sup.Name,
-                                        Recoupid = tran.Recoupid,
-                                        credit = vt.deposit,
-                                        CNS = vt.cns,
-                                        recoup = vt.recoup,
-                                    }).ToList();
-                }
+                tempList = tempList.Where(m => m.brsDone == true).ToList();
             }
+            accounttrans = (from tran in tempList
+                            join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
+                            join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
+                            where tran.TransCommited == true
+                            orderby tran.brsDone descending, tran.bankDate, tran.orderId
+                            select new TransModel()
+                            {
+                                BankAccountNO = tran.BankAccountNO,
+                                ProjectNo = tran.ProjectNo,
+                                bankDate = tran.bankDate,
+                                Amount = tran.Amount,
+                                ChequeNO = tran.ChequeNO,
+                                CommitmentNO = tran.CommitmentNO,
+                                voucherNo = tran.voucherNo,
+                                voucherType = tran.voucherType,
+                                voucherTypeStr = vt.VoucherTypeName,
+                                narration = tran.narration,
+                                Remarks = tran.Remarks,
+                                head = tran.Head,
+                                desc = tran.Description,
+                                TransNO = tran.TransNO,
+                                deleted = tran.deleted,
+                                currentBal = tran.currentBal,
+                                AvailableBal = tran.AvailableBal,
+                                brsDone = tran.brsDone,
+                                orderId = tran.orderId,
+                                bankPart = tran.BankPart,
+                                CoordinatorName = Tranfilter.coordnatorName,
+                                Supplier = sup.Name,
+                                Recoupid = tran.Recoupid,
+                                credit = vt.deposit,
+                                CNS = vt.cns,
+                                recoup = vt.recoup,
+                            }).ToList();
+            //if (Tranfilter.VoucherTypeID == 10 && Tranfilter.cns != true)// alltransaction
+            //{
+
+            //    if (Tranfilter.ShowBRS)
+            //    {
+            //accounttrans = (from tran in tempList
+            //                join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
+            //                join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
+            //                where tran.TransCommited == true && tran.brsDone == true
+            //                orderby tran.brsDone descending, tran.bankDate, tran.orderId
+            //                select new TransModel()
+            //                {
+            //                    BankAccountNO = tran.BankAccountNO,
+            //                    ProjectNo = tran.ProjectNo,
+            //                    bankDate = tran.bankDate,
+            //                    Amount = tran.Amount,
+            //                    ChequeNO = tran.ChequeNO,
+            //                    CommitmentNO = tran.CommitmentNO,
+            //                    voucherNo = tran.voucherNo,
+            //                    voucherType = tran.voucherType,
+            //                    voucherTypeStr = vt.VoucherTypeName,
+            //                    narration = tran.narration,
+            //                    Remarks = tran.Remarks,
+            //                    head = tran.Head,
+            //                    desc = tran.Description,
+            //                    TransNO = tran.TransNO,
+            //                    deleted = tran.deleted,
+            //                    currentBal = tran.currentBal,
+            //                    AvailableBal = tran.AvailableBal,
+            //                    brsDone = tran.brsDone,
+            //                    orderId = tran.orderId,
+            //                    bankPart = tran.BankPart,
+            //                    CoordinatorName = Tranfilter.coordnatorName,
+            //                    Supplier = sup.Name,
+            //                    Recoupid = tran.Recoupid,
+            //                    credit = vt.deposit,
+            //                    CNS = vt.cns,
+            //                    recoup = vt.recoup,
+            //                }).ToList();
+            //    }
+            //    else
+            //    {
+            //        accounttrans = (from tran in tempList
+            //                        join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
+            //                        join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
+            //                        where tran.TransCommited == true
+            //                        orderby tran.brsDone descending, tran.bankDate, tran.orderId
+            //                        select new TransModel()
+            //                        {
+            //                            BankAccountNO = tran.BankAccountNO,
+            //                            ProjectNo = tran.ProjectNo,
+            //                            bankDate = tran.bankDate,
+            //                            Amount = tran.Amount,
+            //                            ChequeNO = tran.ChequeNO,
+            //                            CommitmentNO = tran.CommitmentNO,
+            //                            voucherNo = tran.voucherNo,
+            //                            voucherType = tran.voucherType,
+            //                            voucherTypeStr = vt.VoucherTypeName,
+            //                            narration = tran.narration,
+            //                            Remarks = tran.Remarks,
+            //                            head = tran.Head,
+            //                            desc = tran.Description,
+            //                            TransNO = tran.TransNO,
+            //                            deleted = tran.deleted,
+            //                            currentBal = tran.currentBal,
+            //                            AvailableBal = tran.AvailableBal,
+            //                            brsDone = tran.brsDone,
+            //                            orderId = tran.orderId,
+            //                            bankPart = tran.BankPart,
+            //                            CoordinatorName = Tranfilter.coordnatorName,
+            //                            Supplier = sup.Name,
+            //                            Recoupid = tran.Recoupid,
+            //                            credit = vt.deposit,
+            //                            CNS = vt.cns,
+            //                            recoup = vt.recoup,
+            //                        }).ToList();
+            //    }
+            //}
+
+            //else
+            //{
+            //    if (Tranfilter.cns && Tranfilter.Allacc)
+            //    {
+            //        accounttrans = (from tran in _accountdbmodel.Transaction
+            //                        join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
+            //                        join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
+            //                        join coor in _accountdbmodel.ImprestMasters on tran.INSTID equals coor.InstituteId
+            //                        where tran.CNS == true && tran.TransCommited == true && tran.deleted == false
+            //                        orderby tran.brsDone descending, tran.bankDate, tran.orderId
+            //                        select new TransModel()
+            //                        {
+            //                            BankAccountNO = tran.BankAccountNO,
+            //                            ProjectNo = tran.ProjectNo,
+            //                            bankDate = tran.bankDate,
+            //                            Amount = tran.Amount,
+            //                            ChequeNO = tran.ChequeNO,
+            //                            CommitmentNO = tran.CommitmentNO,
+            //                            voucherNo = tran.voucherNo,
+            //                            voucherType = tran.voucherType,
+            //                            voucherTypeStr = vt.VoucherTypeName,
+            //                            narration = tran.narration,
+            //                            Remarks = tran.Remarks,
+            //                            head = tran.Head,
+            //                            desc = tran.Description,
+            //                            TransNO = tran.TransNO,
+            //                            deleted = tran.deleted,
+            //                            currentBal = tran.currentBal,
+            //                            AvailableBal = tran.AvailableBal,
+            //                            brsDone = tran.brsDone,
+            //                            orderId = tran.orderId,
+            //                            bankPart = tran.BankPart,
+            //                            CoordinatorName = coor.CoordinatorName,
+            //                            Supplier = sup.Name,
+            //                            Recoupid = tran.Recoupid,
+            //                            credit = vt.deposit,
+            //                            CNS = vt.cns,
+            //                            recoup = vt.recoup,
+            //                        }).ToList();
+
+
+            //        return accounttrans;
+            //    }
+            //    else if (Tranfilter.cns && !Tranfilter.Allacc)///cns for one account
+            //    {
+            //        accounttrans = (from tran in tempList
+            //                        join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
+            //                        join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
+            //                        join coor in _accountdbmodel.ImprestMasters on tran.INSTID equals coor.InstituteId
+            //                        where tran.CNS == true && tran.TransCommited == true && tran.deleted == false
+            //                        orderby tran.brsDone descending, tran.bankDate, tran.orderId
+            //                        select new TransModel()
+            //                        {
+            //                            BankAccountNO = tran.BankAccountNO,
+            //                            ProjectNo = tran.ProjectNo,
+            //                            bankDate = tran.bankDate,
+            //                            Amount = tran.Amount,
+            //                            ChequeNO = tran.ChequeNO,
+            //                            CommitmentNO = tran.CommitmentNO,
+            //                            voucherNo = tran.voucherNo,
+            //                            voucherType = tran.voucherType,
+            //                            voucherTypeStr = vt.VoucherTypeName,
+            //                            narration = tran.narration,
+            //                            Remarks = tran.Remarks,
+            //                            head = tran.Head,
+            //                            desc = tran.Description,
+            //                            TransNO = tran.TransNO,
+            //                            deleted = tran.deleted,
+            //                            currentBal = tran.currentBal,
+            //                            AvailableBal = tran.AvailableBal,
+            //                            brsDone = tran.brsDone,
+            //                            orderId = tran.orderId,
+            //                            bankPart = tran.BankPart,
+            //                            CoordinatorName = coor.CoordinatorName,
+            //                            Supplier = sup.Name,
+            //                            Recoupid = tran.Recoupid,
+            //                            credit = vt.deposit,
+            //                            CNS = vt.cns,
+            //                            recoup = vt.recoup,
+            //                        }).ToList();
+            //        //Taccounttrans.AddRange(accounttrans);
+            //        return accounttrans;
+            //    }
+
+            //    else if (Tranfilter.ShowBRS)
+            //    {
+            //        accounttrans = (from tran in tempList
+            //                        join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
+            //                        join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
+
+            //                        where tran.voucherType == Tranfilter.VoucherTypeID && tran.TransCommited == true && tran.brsDone == true
+            //                        orderby tran.brsDone descending, tran.bankDate, tran.orderId
+            //                        select new TransModel()
+            //                        {
+            //                            BankAccountNO = tran.BankAccountNO,
+            //                            ProjectNo = tran.ProjectNo,
+            //                            bankDate = tran.bankDate,
+            //                            Amount = tran.Amount,
+            //                            ChequeNO = tran.ChequeNO,
+            //                            CommitmentNO = tran.CommitmentNO,
+            //                            voucherNo = tran.voucherNo,
+            //                            voucherType = tran.voucherType,
+            //                            voucherTypeStr = vt.VoucherTypeName,
+            //                            narration = tran.narration,
+            //                            Remarks = tran.Remarks,
+            //                            head = tran.Head,
+            //                            desc = tran.Description,
+            //                            TransNO = tran.TransNO,
+            //                            deleted = tran.deleted,
+            //                            currentBal = tran.currentBal,
+            //                            AvailableBal = tran.AvailableBal,
+            //                            brsDone = tran.brsDone,
+            //                            orderId = tran.orderId,
+            //                            bankPart = tran.BankPart,
+            //                            CoordinatorName = Tranfilter.coordnatorName,
+            //                            Supplier = sup.Name,
+            //                            Recoupid = tran.Recoupid,
+            //                            credit = vt.deposit,
+            //                            CNS = vt.cns,
+            //                            recoup = vt.recoup,
+            //                        }).ToList();
+            //    }
+            //    else
+            //    {
+            //        accounttrans = (from tran in tempList
+            //                        join vt in _accountdbmodel.VoucherTypes on tran.voucherType equals vt.TypeId
+            //                        join sup in _accountdbmodel.supplier on tran.supplier equals sup.Id
+            //                        where tran.voucherType == Tranfilter.VoucherTypeID && tran.TransCommited == true && tran.deleted == false
+            //                        orderby tran.brsDone descending, tran.bankDate, tran.orderId
+            //                        select new TransModel()
+            //                        {
+            //                            BankAccountNO = tran.BankAccountNO,
+            //                            ProjectNo = tran.ProjectNo,
+            //                            bankDate = tran.bankDate,
+            //                            Amount = tran.Amount,
+            //                            ChequeNO = tran.ChequeNO,
+            //                            CommitmentNO = tran.CommitmentNO,
+            //                            voucherNo = tran.voucherNo,
+            //                            voucherType = tran.voucherType,
+            //                            voucherTypeStr = vt.VoucherTypeName,
+            //                            narration = tran.narration,
+            //                            Remarks = tran.Remarks,
+            //                            head = tran.Head,
+            //                            desc = tran.Description,
+            //                            TransNO = tran.TransNO,
+            //                            deleted = tran.deleted,
+            //                            currentBal = tran.currentBal,
+            //                            AvailableBal = tran.AvailableBal,
+            //                            brsDone = tran.brsDone,
+            //                            orderId = tran.orderId,
+            //                            bankPart = tran.BankPart,
+            //                            CoordinatorName = Tranfilter.coordnatorName,
+            //                            Supplier = sup.Name,
+            //                            Recoupid = tran.Recoupid,
+            //                            credit = vt.deposit,
+            //                            CNS = vt.cns,
+            //                            recoup = vt.recoup,
+            //                        }).ToList();
+            //    }
+            //}
             //Taccounttrans.AddRange(accounttrans);
             return accounttrans;
         }

@@ -49,41 +49,41 @@ namespace Accounting
             AreaRegistration.RegisterAllAreas();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            using (AccountingDbModel accdbmdl = new AccountingDbModel())
-            {
-                accdbmdl.recoupRecord.FirstOrDefault();
-                if (string.IsNullOrEmpty(File.ReadAllText(Server.MapPath("~/SqlFiles/database.txt"))))
-                {
-                    string script = File.ReadAllText(Server.MapPath("~/SqlFiles/country.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/commitTran.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/createTran.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/GENERATETRANSID.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/InsertUserTbl.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/RESETPASSWORD.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/verifyUser.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/projectType.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/createAdmin.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/voucherType.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/acctran_delete_default.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/createRecoupTran.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    script = File.ReadAllText(Server.MapPath("~/SqlFiles/GENERATERECOUPID.sql"));
-                    accdbmdl.Database.ExecuteSqlCommand(script);
-                    accdbmdl.SaveChanges();
-                    File.WriteAllText(Server.MapPath("~/SqlFiles/database.txt"), "Database installed");
-                }
-            }
+            //using (AccountingDbModel accdbmdl = new AccountingDbModel())
+            //{
+            //    accdbmdl.recoupRecord.FirstOrDefault();
+            //    if (string.IsNullOrEmpty(File.ReadAllText(Server.MapPath("~/SqlFiles/database.txt"))))
+            //    {
+            //        string script = File.ReadAllText(Server.MapPath("~/SqlFiles/country.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/commitTran.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/createTran.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/GENERATETRANSID.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/InsertUserTbl.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/RESETPASSWORD.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/verifyUser.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/projectType.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/createAdmin.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/voucherType.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/acctran_delete_default.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/createRecoupTran.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        script = File.ReadAllText(Server.MapPath("~/SqlFiles/GENERATERECOUPID.sql"));
+            //        accdbmdl.Database.ExecuteSqlCommand(script);
+            //        accdbmdl.SaveChanges();
+            //        File.WriteAllText(Server.MapPath("~/SqlFiles/database.txt"), "Database installed");
+            //    }
+            //}
 
         }
         protected void Session_Start()
